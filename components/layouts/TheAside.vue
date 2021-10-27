@@ -103,7 +103,7 @@
       <div>
         <b-link href="tel:1544-7199" class="phonenumber">
           <b-icon icon="telephone-fill" />
-          1500-0000
+          1544-7199
         </b-link>
         <div>
           <p>1번 : 배송 / 교환 / 환불 관련</p>

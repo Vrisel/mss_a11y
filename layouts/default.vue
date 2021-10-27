@@ -5,7 +5,7 @@
     <main :class="{ 'aside-expanded': isAsideExpanded }">
       <Nuxt />
     </main>
-    <TheFooter />
+    <TheFooter :class="{ 'aside-expanded': isAsideExpanded }" />
   </div>
 </template>
 
@@ -39,10 +39,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-main {
+main,
+footer {
   transition: 0.5s;
 }
-main.aside-expanded {
+main.aside-expanded,
+footer.aside-expanded {
   margin-left: 270px;
 }
 </style>
