@@ -3,6 +3,7 @@
     <TheHeader />
     <TheAside @asideExpansion="toggleAside" />
     <main :class="{ 'aside-expanded': isAsideExpanded }">
+      <b-breadcrumb :items="breadcrumbs" class="ml-5" />
       <Nuxt />
     </main>
     <TheFooter :class="{ 'aside-expanded': isAsideExpanded }" />
@@ -23,6 +24,14 @@ export default {
     return {
       isAsideExpanded: true,
     };
+  },
+  computed: {
+    breadcrumbs() {
+      return [
+        { text: '무신사 스토어', href: '/' },
+        { text: '상의', href: '#' },
+      ];
+    },
   },
   methods: {
     toggleAside(e) {
@@ -46,5 +55,8 @@ footer {
 main.aside-expanded,
 footer.aside-expanded {
   margin-left: 270px;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: '〉';
 }
 </style>
