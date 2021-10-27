@@ -5,6 +5,7 @@
   >
     <b-button
       type="button"
+      squared
       variant="outline-secondary"
       class="aside-toggler"
       @click="toggleAside"
@@ -102,10 +103,30 @@
       <div>
         <b-link href="tel:1544-7199" class="phonenumber">
           <b-icon icon="telephone-fill" />
-          1544-7199
+          1500-0000
         </b-link>
-        <p>1번 : 배송 / 교환 / 환불 관련</p>
-        <p>2번 : 결제 / 회원 관련</p>
+        <div>
+          <p>1번 : 배송 / 교환 / 환불 관련</p>
+          <p>2번 : 결제 / 회원 관련</p>
+          <p>오전9시~오후6시 운영 / 토,일,휴일 휴무</p>
+        </div>
+        <hr />
+        <div>
+          <p>전화 전 <b-link href="">자주 묻는 질문</b-link>을 확인하세요.</p>
+          <p><b-link href="">1:1문의</b-link>를 통해서도 상담이 가능합니다.</p>
+          <p>상품 문의는 각 상품 Q&A를 이용하세요.</p>
+        </div>
+        <div>
+          <b-button size="sm" squared href="" variant="outline-secondary"
+            >회원후기</b-button
+          >
+          <b-button size="sm" squared href="" variant="outline-secondary"
+            >회원 혜택</b-button
+          >
+          <b-button size="sm" squared href="" variant="outline-secondary"
+            >공지사항</b-button
+          >
+        </div>
       </div>
     </div>
   </aside>
@@ -153,5 +174,8 @@ aside.aside-collapsed {
   position: absolute;
   left: 270px;
   z-index: 1;
+}
+.phonenumber {
+  font-size: 1.5em;
 }
 </style>

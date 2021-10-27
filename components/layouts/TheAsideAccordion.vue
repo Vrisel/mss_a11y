@@ -10,28 +10,14 @@
           전체
           <span class="total">({{ total.toLocaleString() }})</span>
         </b-link>
-        <b-row>
-          <b-col cols="6">
-            <b-link
-              v-for="item of left"
-              :key="item.name"
-              :to="`/category/${item.category}`"
-            >
+        <ul class="two-columns-list">
+          <li v-for="item of items" :key="item.name">
+            <b-link :to="`/category/${item.category}`">
               {{ item.name }}
               <span class="count">({{ item.count.toLocaleString() }})</span>
             </b-link>
-          </b-col>
-          <b-col cols="6" data-test="right">
-            <b-link
-              v-for="item of right"
-              :key="item.name"
-              :to="`/category/${item.category}`"
-            >
-              {{ item.name }}
-              <span class="count">({{ item.count.toLocaleString() }})</span>
-            </b-link>
-          </b-col>
-        </b-row>
+          </li>
+        </ul>
       </b-card-body>
     </b-collapse>
   </b-card>
@@ -67,16 +53,15 @@ export default {
         return sum;
       }
     },
-    left() {
-      const length = this.items.length;
-      return this.items.slice(0, length / 2);
-    },
-    right() {
-      const length = this.items.length;
-      return this.items.slice(length / 2);
-    },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.card-header {
+  cursor: pointer;
+}
+.two-columns-list {
+  columns: 2;
+}
+</style>

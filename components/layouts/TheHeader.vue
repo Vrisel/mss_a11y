@@ -82,6 +82,11 @@
     <b-row>
       <TheHeaderLogin />
       <b-col cols="auto"><b-link>마이페이지</b-link></b-col>
+      <b-col cols="auto"
+        ><b-link
+          >장바구니 <b-badge pill variant="primary">0</b-badge></b-link
+        ></b-col
+      >
     </b-row>
   </header>
 </template>

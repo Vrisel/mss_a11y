@@ -31,8 +31,6 @@ describe('Accordion', () => {
     // =0 because of 'Best' (otherwise 2567 + 6217 = 8784)
     expect(wrapper.vm.total).toBe(0);
 
-    expect(wrapper.vm.left.length).toBe(1);
-    expect(wrapper.vm.right.length).toBe(2);
     expect(wrapper.find('.count').text().includes(',')).toBe(true);
   });
 });

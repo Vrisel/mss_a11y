@@ -1,6 +1,6 @@
 <template>
   <b-col cols="auto">
-    <b-button>로그인</b-button>
+    <b-button squared size="sm" variant="outline-secondary">로그인</b-button>
   </b-col>
 </template>
 
