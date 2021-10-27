@@ -1,8 +1,8 @@
 <template>
   <div id="__default">
     <TheHeader />
-    <TheAside />
-    <main>
+    <TheAside @asideExpansion="toggleAside" />
+    <main :class="{ 'aside-expanded': isAsideExpanded }">
       <Nuxt />
     </main>
     <TheFooter />
@@ -19,6 +19,16 @@ export default {
     TheAside,
     TheFooter,
   },
+  data() {
+    return {
+      isAsideExpanded: true,
+    };
+  },
+  methods: {
+    toggleAside(e) {
+      this.isAsideExpanded = e;
+    },
+  },
 };
 </script>
 
@@ -28,5 +38,11 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+}
+main {
+  transition: 0.5s;
+}
+main.aside-expanded {
+  margin-left: 270px;
 }
 </style>
