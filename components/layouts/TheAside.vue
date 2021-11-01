@@ -36,47 +36,77 @@
               <b-form-input
                 id="brandSearch"
                 v-model="brandSearch"
-                type="text"
+                type="search"
                 size="sm"
               />
             </b-form-group>
             <b-form-group>
               <b-radio-group
                 v-model="brandSearchOption"
-                :options="['A', 'B', 'C', 'D', 'E', 'F']"
-                size="sm"
+                :options="[
+                  'A',
+                  'B',
+                  'C',
+                  'D',
+                  'E',
+                  'F',
+                  'G',
+                  'H',
+                  'I',
+                  'J',
+                  'K',
+                  'L',
+                  'M',
+                  'N',
+                  'O',
+                  'P',
+                  'Q',
+                  'R',
+                  'S',
+                  'T',
+                  'U',
+                  'V',
+                  'W',
+                  'X',
+                  'Y',
+                  'Z',
+                ]"
                 buttons
                 button-variant="outline-secondary"
-              />
-              <b-radio-group
-                v-model="brandSearchOption"
-                :options="['G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P']"
-                size="sm"
-                buttons
-                button-variant="outline-secondary"
-              />
-              <b-radio-group
-                v-model="brandSearchOption"
-                :options="['Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']"
-                size="sm"
-                buttons
-                button-variant="outline-secondary"
-              />
+              >
+                <template #first>
+                  <b-form-radio class="longer-label" value="best">
+                    BEST
+                  </b-form-radio>
+                  <b-form-radio class="longer-label" value="exclusive">
+                    단독
+                  </b-form-radio>
+                  <b-form-radio class="longer-label" value="favorite">
+                    <b-iconstack scale="0.9">
+                      <b-icon icon="circle-fill" variant="danger" />
+                      <b-icon icon="heart-fill" variant="white" scale="0.6" />
+                    </b-iconstack>
+                  </b-form-radio>
+                  <b-form-radio class="longer-label" value="etc">
+                    etc.
+                  </b-form-radio>
+                </template>
+              </b-radio-group>
             </b-form-group>
           </b-form>
           <b-list-group>
-            <b-list-group-item v-for="brand in brands" :key="brand.name">
+            <b-list-group-item v-for="brand in brands" :key="brand.id">
               <b-row>
                 <b-col>
-                  <b-link :to="`/display/brands/${brand.to}`">
-                    <strong>{{ brand.name.toUpperCase() }}</strong>
+                  <b-link :to="`/brand/${brand.id}`">
+                    <strong>{{ brand.name_eng.toUpperCase() }}</strong>
                     <br />
-                    <span class=""
-                      >{{ brand.kor }}
-                      <span class="count"
-                        >({{ brand.count.toLocaleString() }})</span
-                      ></span
-                    >
+                    <span class="">
+                      {{ brand.name_kor }}
+                      <span class="count">
+                        ({{ brand.count.toLocaleString() }})
+                      </span>
+                    </span>
                   </b-link>
                 </b-col>
                 <b-col cols="auto">
@@ -177,6 +207,28 @@ aside.aside-collapsed {
   position: absolute;
   left: 270px;
   z-index: 1;
+}
+.btn-group {
+  display: inline-block;
+}
+.btn-group > label.btn {
+  vertical-align: middle;
+  font-size: 0.8rem;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin: 0 2px 2px 0;
+  border-radius: 0;
+}
+.longer-label {
+  width: 46px !important;
+}
+.favorite-label {
+  width: 188px !important;
+}
+.list-group {
+  max-height: 1511px;
+  overflow: auto;
 }
 .phonenumber {
   font-size: 1.5em;
