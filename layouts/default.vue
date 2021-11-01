@@ -3,7 +3,11 @@
     <TheHeader />
     <TheAside @asideExpansion="toggleAside" />
     <main :class="{ 'aside-expanded': isAsideExpanded }">
-      <b-breadcrumb :items="breadcrumbs" class="ml-5" />
+      <b-breadcrumb
+        v-if="breadcrumbs.length > 1"
+        :items="breadcrumbs"
+        class="ml-5"
+      />
       <Nuxt />
     </main>
     <TheFooter :class="{ 'aside-expanded': isAsideExpanded }" />
@@ -14,6 +18,8 @@
 import TheHeader from '@/components/layouts/TheHeader.vue';
 import TheAside from '@/components/layouts/TheAside.vue';
 import TheFooter from '@/components/layouts/TheFooter.vue';
+import category from '@/test/stub.category.js';
+import brands from '@/test/stub.brands.js';
 export default {
   components: {
     TheHeader,
@@ -23,14 +29,32 @@ export default {
   data() {
     return {
       isAsideExpanded: true,
+      category,
+      brands,
     };
   },
   computed: {
     breadcrumbs() {
-      return [
-        { text: '무신사 스토어', href: '/' },
-        { text: '상의', href: '#' },
-      ];
+      const bc = [{ text: '무신사 스토어', href: '/' }];
+      if (this.$route.path.includes('category')) {
+        const categoryId = this.$route.params.id;
+        const upperId = categoryId.slice(0, 3);
+        const upperName = this.category[upperId].name_kor;
+        bc.push({ text: `${upperName}`, href: `/category/${upperId}` });
+
+        if (categoryId.length > 3) {
+          const categoryName = this.category[upperId].sub[categoryId].name_kor;
+          bc.push({ text: `${categoryName}`, href: `/category/${categoryId}` });
+        }
+      } else if (this.$route.path.includes('brand')) {
+        bc.push({ text: '브랜드숍', href: '/brands' });
+        const brandId = this.$route.params.id;
+        if (brandId) {
+          const brandName = this.brands[brandId].name_eng;
+          bc.push({ text: `${brandName}`, href: `/brand/${brandId}` });
+        }
+      }
+      return bc;
     },
   },
   methods: {
