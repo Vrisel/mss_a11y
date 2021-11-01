@@ -17,9 +17,10 @@
       <b-tabs justified class="mt-3">
         <b-tab title="품목">
           <div class="accordion" role="tablist">
+            <TheAsideAccordion v-bind="best" />
             <TheAsideAccordion
               v-for="category in categories"
-              :key="category.english"
+              :key="category.id"
               v-bind="category"
             />
           </div>
@@ -117,15 +118,15 @@
           <p>상품 문의는 각 상품 Q&A를 이용하세요.</p>
         </div>
         <div>
-          <b-button size="sm" squared href="" variant="outline-secondary"
-            >회원후기</b-button
-          >
-          <b-button size="sm" squared href="" variant="outline-secondary"
-            >회원 혜택</b-button
-          >
-          <b-button size="sm" squared href="" variant="outline-secondary"
-            >공지사항</b-button
-          >
+          <b-button size="sm" squared href="" variant="outline-secondary">
+            회원후기
+          </b-button>
+          <b-button size="sm" squared href="" variant="outline-secondary">
+            회원 혜택
+          </b-button>
+          <b-button size="sm" squared href="" variant="outline-secondary">
+            공지사항
+          </b-button>
         </div>
       </div>
     </div>
@@ -134,12 +135,14 @@
 
 <script>
 import TheAsideAccordion from './TheAsideAccordion.vue';
+import stubCategoriesBest from '@/test/stub.categorybest.js';
 import stubCategories from '@/test/stub.category.js';
 import stubBrands from '@/test/stub.brands.js';
 export default {
   components: { TheAsideAccordion },
   data() {
     return {
+      best: stubCategoriesBest,
       categories: stubCategories,
       brands: stubBrands,
       brandSearch: '',
