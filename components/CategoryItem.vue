@@ -65,8 +65,8 @@
     </p>
     <p>
       <b-iconstack>
-        <b-icon icon="circle-fill" variant="danger" />
-        <b-icon icon="heart-fill" variant="white" scale="0.6" />
+        <b-icon stacked icon="circle-fill" variant="danger" />
+        <b-icon stacked icon="heart-fill" variant="white" scale="0.7" />
       </b-iconstack>
       {{ favs.toLocaleString() }}
     </p>

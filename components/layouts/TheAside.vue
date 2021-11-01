@@ -83,8 +83,13 @@
                   </b-form-radio>
                   <b-form-radio class="longer-label" value="favorite">
                     <b-iconstack scale="0.9">
-                      <b-icon icon="circle-fill" variant="danger" />
-                      <b-icon icon="heart-fill" variant="white" scale="0.6" />
+                      <b-icon stacked icon="circle-fill" variant="danger" />
+                      <b-icon
+                        stacked
+                        icon="heart-fill"
+                        variant="white"
+                        scale="0.7"
+                      />
                     </b-iconstack>
                   </b-form-radio>
                   <b-form-radio class="longer-label" value="etc">
