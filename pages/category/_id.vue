@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="category">
-      <h2>{{ name_kor }}</h2>
+      <h2>{{ category.name_eng }}</h2>
     </div>
     <b-row>
       <ul>
@@ -20,18 +20,26 @@ import stubItems from '@/test/stub.items.js';
 export default {
   components: { CategoryItem },
   layout: 'default',
-  data() {
+  asyncData({ params }) {
+    const categoryId = params.id;
+    const upperId = categoryId.slice(0, 3);
+    const category =
+      stubCategories[upperId].sub[categoryId] || stubCategories[upperId];
     return {
-      // stubItems,
+      category,
+      items: stubItems[params.id],
+      title: [
+        stubCategories[upperId].name_kor,
+        categoryId.length > 3 ? category.name_kor : '',
+      ]
+        .filter(Boolean)
+        .join(' > '),
     };
   },
-  computed: {
-    category() {
-      return stubCategories[this.$route.params.id];
-    },
-    items() {
-      return stubItems[this.$route.params.id];
-    },
+  head() {
+    return {
+      title: this.title,
+    };
   },
 };
 </script>

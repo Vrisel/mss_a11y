@@ -4,7 +4,11 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: '무신사 스토어 클론',
+    titleTemplate(chunk) {
+      return chunk
+        ? `${chunk} | ${process.env.globalTitle}`
+        : process.env.globalTitle;
+    },
     htmlAttrs: {
       lang: 'ko',
     },
@@ -19,6 +23,7 @@ export default {
 
   env: {
     baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    globalTitle: '무신사 스토어 클론',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
