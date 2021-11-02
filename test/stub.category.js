@@ -12,6 +12,9 @@ export default {
     name_kor: '아우터',
     name_eng: 'Outer',
     id: '002',
-    sub: {},
+    sub: {
+      '002022': { name_kor: '후드 집업', id: '002022', count: 2604 },
+      '002001': { name_kor: '블루종/MA-1', id: '002001', count: 1785 },
+    },
   },
 };

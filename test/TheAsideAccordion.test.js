@@ -1,5 +1,6 @@
 import { createLocalVue, mount } from '@vue/test-utils';
-import BootstrapVue from 'bootstrap-vue';
+import { BootstrapVue } from 'bootstrap-vue';
+import stubCategory from './stub.category.js';
 import Accordion from '@/components/layouts/TheAsideAccordion.vue';
 
 const localVue = createLocalVue();
@@ -9,27 +10,18 @@ describe('Accordion', () => {
   test('presents props properly', () => {
     const wrapper = mount(Accordion, {
       localVue,
-      propsData: {
-        title: '인기',
-        english: 'Best',
-        items: [
-          { name: '후드 집업', category: '002022', count: 2567 },
-          { name: '데님 팬츠', category: '003002', count: 6217 },
-          { name: '캔버스/단화', category: '018002', count: 4587 },
-        ],
-      },
+      propsData: stubCategory['001'],
     });
 
-    expect(wrapper.vm.isBest).toBe(true);
+    expect(wrapper.vm.isBest).toBe(false);
 
     const strong = wrapper.find('strong');
-    expect(strong.text()).toBe('인기');
+    expect(strong.text()).toBe('상의');
 
     const sup = wrapper.find('sup');
-    expect(sup.text()).toBe('Best');
+    expect(sup.text()).toBe('Top');
 
-    // =0 because of 'Best' (otherwise 2567 + 6217 = 8784)
-    expect(wrapper.vm.total).toBe(0);
+    expect(wrapper.vm.total).toBe(39377 + 9246);
 
     expect(wrapper.find('.count').text().includes(',')).toBe(true);
   });
