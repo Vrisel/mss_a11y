@@ -1,6 +1,6 @@
 import { createLocalVue, mount } from '@vue/test-utils';
 import { BootstrapVue } from 'bootstrap-vue';
-import stubCategory from './stub.category.js';
+import stubCategoryList from './stub.categorylist.js';
 import Accordion from '@/components/layouts/TheAsideAccordion.vue';
 
 const localVue = createLocalVue();
@@ -10,7 +10,7 @@ describe('Accordion', () => {
   test('presents props properly', () => {
     const wrapper = mount(Accordion, {
       localVue,
-      propsData: stubCategory['001'],
+      propsData: stubCategoryList['001'],
     });
 
     expect(wrapper.vm.isBest).toBe(false);
