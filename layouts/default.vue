@@ -40,31 +40,9 @@ export default {
   },
   computed: {
     breadcrumbs() {
-      /* const bc = [{ text: '무신사 스토어', href: '/' }];
-      if (this.$route.path.includes('category')) {
-        const categoryId = this.$route.params.id;
-        const upperId = categoryId.slice(0, 3);
-        const upperName = this.category[upperId].name_kor;
-        bc.push({ text: `${upperName}`, href: `/category/${upperId}` });
-
-        if (categoryId.length > 3) {
-          const categoryName = this.category[upperId].sub[categoryId].name_kor;
-          bc.push({ text: `${categoryName}`, href: `/category/${categoryId}` });
-        }
-      } else if (this.$route.path.includes('brand')) {
-        bc.push({ text: '브랜드숍', href: '/brands' });
-        const brandId = this.$route.params.id;
-        if (brandId) {
-          const brandName = this.brands[brandId].name_eng;
-          bc.push({ text: `${brandName}`, href: `/brand/${brandId}` });
-        }
-      }
-      return bc; */
-
       const bc = this.$store.getters.getBreadcrumbs;
       const dir = this.$route.name.toLowerCase().split('-')[0];
       if (dir === 'category') {
-        console.log('category!');
         return bc.forCategory;
       } else {
         return bc.forBrand;
