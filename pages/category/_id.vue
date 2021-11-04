@@ -5,8 +5,8 @@
     </div>
     <b-row>
       <ul>
-        <li v-for="item of items" :key="item.goods.name">
-          <CategoryItem v-bind="item" />
+        <li v-for="goods of goodsList" :key="goods.name">
+          <CategoryItem v-bind="goods" />
         </li>
       </ul>
     </b-row>
@@ -15,31 +15,36 @@
 
 <script>
 import CategoryItem from '~/components/CategoryItem.vue';
-import stubCategories from '@/test/stub.category.js';
-import stubItems from '@/test/stub.items.js';
+import stubGoodsList from '@/test/stub.goodslist.js';
 export default {
   components: { CategoryItem },
   layout: 'default',
   asyncData({ params }) {
-    const categoryId = params.id;
-    const upperId = categoryId.slice(0, 3);
-    const category =
-      stubCategories[upperId].sub[categoryId] || stubCategories[upperId];
+    const goodsList = stubGoodsList[params.id];
     return {
-      category,
-      items: stubItems[params.id],
-      title: [
-        stubCategories[upperId].name_kor,
-        categoryId.length > 3 ? category.name_kor : '',
-      ]
-        .filter(Boolean)
-        .join(' > '),
+      goodsList,
     };
+  },
+  fetch({ route, store }) {
+    store.dispatch('setLocation', route);
   },
   head() {
     return {
       title: this.title,
     };
+  },
+  computed: {
+    category() {
+      return this.$store.state.category;
+    },
+    upperCategory() {
+      return this.$store.state.upperCategory;
+    },
+    title() {
+      return [this.upperCategory.name_kor || '', this.category.name_kor]
+        .filter(Boolean)
+        .join(' > ');
+    },
   },
 };
 </script>

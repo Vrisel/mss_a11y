@@ -19,7 +19,7 @@
           <div class="accordion" role="tablist">
             <TheAsideAccordion v-bind="best" />
             <TheAsideAccordion
-              v-for="category in categories"
+              v-for="category in categoryList"
               :key="category.id"
               v-bind="category"
             />
@@ -120,8 +120,9 @@
                     :value="true"
                     button
                     button-variant="outline-danger"
-                    ><b-icon :icon="brand.isFav ? 'heart-fill' : 'heart'"
-                  /></b-checkbox>
+                  >
+                    <b-icon :icon="brand.isFav ? 'heart-fill' : 'heart'" />
+                  </b-checkbox>
                 </b-col>
               </b-row>
             </b-list-group-item>
@@ -170,20 +171,28 @@
 
 <script>
 import TheAsideAccordion from './TheAsideAccordion.vue';
-import stubCategoriesBest from '@/test/stub.categorybest.js';
-import stubCategories from '@/test/stub.category.js';
+import stubCategoryBest from '@/test/stub.categorybest.js';
+import stubCategoryList from '@/test/stub.categorylist.js';
 import stubBrands from '@/test/stub.brands.js';
 export default {
   components: { TheAsideAccordion },
   data() {
     return {
-      best: stubCategoriesBest,
-      categories: stubCategories,
-      brands: stubBrands,
       brandSearch: '',
       brandSearchOption: '',
       isAsideExpanded: true,
     };
+  },
+  computed: {
+    best() {
+      return stubCategoryBest;
+    },
+    categoryList() {
+      return stubCategoryList;
+    },
+    brands() {
+      return stubBrands;
+    },
   },
   methods: {
     toggleAside() {

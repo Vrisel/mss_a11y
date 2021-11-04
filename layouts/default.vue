@@ -23,7 +23,7 @@ import TheAside from '@/components/layouts/TheAside.vue';
 import TheHovermenu from '@/components/layouts/TheHovermenu.vue';
 import TheFooter from '@/components/layouts/TheFooter.vue';
 import category from '@/test/stub.category.js';
-import brands from '@/test/stub.brands.js';
+import brands from '~/test/stub.brands.js';
 export default {
   components: {
     TheHeader,
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     breadcrumbs() {
-      const bc = [{ text: '무신사 스토어', href: '/' }];
+      /* const bc = [{ text: '무신사 스토어', href: '/' }];
       if (this.$route.path.includes('category')) {
         const categoryId = this.$route.params.id;
         const upperId = categoryId.slice(0, 3);
@@ -59,7 +59,16 @@ export default {
           bc.push({ text: `${brandName}`, href: `/brand/${brandId}` });
         }
       }
-      return bc;
+      return bc; */
+
+      const bc = this.$store.getters.getBreadcrumbs;
+      const dir = this.$route.name.toLowerCase().split('-')[0];
+      if (dir === 'category') {
+        console.log('category!');
+        return bc.forCategory;
+      } else {
+        return bc.forBrand;
+      }
     },
   },
   methods: {

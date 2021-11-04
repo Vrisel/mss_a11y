@@ -5,17 +5,22 @@
 </template>
 
 <script>
-import stubBrands from '@/test/stub.brands.js';
 export default {
-  asyncData({ params }) {
-    return {
-      brand: stubBrands[params.id],
-    };
+  fetch({ route, store }) {
+    store.dispatch('setLocation', route);
   },
   head() {
     return {
-      title: `${this.brand.name_kor} (${this.brand.name_eng})`,
+      title: this.title,
     };
+  },
+  computed: {
+    brand() {
+      return this.$store.state.brand;
+    },
+    title() {
+      return `${this.brand.name_kor} (${this.brand.name_eng})`;
+    },
   },
 };
 </script>
