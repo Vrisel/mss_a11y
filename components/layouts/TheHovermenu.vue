@@ -4,11 +4,11 @@
       buttons
       stacked
       button-variant="outline-secondary"
-      class="gender"
+      class="gender bg-white"
       :options="['전체', '남성', '여성']"
     />
 
-    <b-button-group vertical class="utility mt-3">
+    <b-button-group vertical class="utility mt-3 bg-white">
       <b-button type="button" variant="outline-secondary">
         <b-iconstack>
           <b-icon stacked icon="circle-fill" variant="danger" />
