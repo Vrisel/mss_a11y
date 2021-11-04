@@ -24,11 +24,21 @@
         <b-icon icon="share" />
         <span class="sr-only">공유하기</span>
       </b-button>
-      <b-button type="button" variant="outline-secondary">
+      <b-button
+        type="button"
+        variant="outline-secondary"
+        :disabled="isTop"
+        @click="scrollTop"
+      >
         <b-icon icon="chevron-bar-up" scale="1.4" />
         <span class="sr-only">맨 위로</span>
       </b-button>
-      <b-button type="button" variant="outline-secondary">
+      <b-button
+        type="button"
+        variant="outline-secondary"
+        :disabled="isBottom"
+        @click="pageDown"
+      >
         <b-icon icon="chevron-down" />
         <span class="sr-only">화면 내리기</span>
       </b-button>
@@ -58,7 +68,18 @@
 
 <script>
 export default {
+  data() {
+    return {
+      scrollY: 0,
+    };
+  },
   computed: {
+    isTop() {
+      return this.scrollY === 0;
+    },
+    isBottom() {
+      return this.scrollY + window.innerHeight >= document.body.offsetHeight;
+    },
     shareUrl() {
       return process.env.baseUrl + this.$route.fullPath;
     },
@@ -69,7 +90,23 @@ export default {
       return `https://twitter.com/intent/tweet?text=${document.title}&url=${this.shareUrl}`;
     },
   },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
   methods: {
+    handleScroll() {
+      this.scrollY = window.scrollY;
+    },
+    scrollTop() {
+      window.scroll({ top: 0, behavior: 'smooth' });
+    },
+    pageDown() {
+      const targetY = scrollY + window.innerHeight * 0.9;
+      window.scroll({ top: targetY, behavior: 'smooth' });
+    },
     copyUrl() {
       navigator.clipboard.writeText(this.shareUrl).then(function () {
         alert('복사되었습니다!');
