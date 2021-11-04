@@ -1,11 +1,13 @@
 import categories from '@/test/stub.category.js';
 import brands from '@/test/stub.brands.js';
+import stubGoods from '@/test/stub.goods.js';
 
 export default {
   state: () => ({
     brand: {},
     upperCategory: {},
     category: {},
+    goods: {},
   }),
   mutations: {
     mutateBrand(state, brand) {
@@ -14,6 +16,9 @@ export default {
     mutateCategories(state, payload) {
       state.category = payload.category || {};
       state.upperCategory = payload.upperCategory || {};
+    },
+    mutateGoods(state, goods) {
+      state.goods = goods;
     },
   },
   actions: {
@@ -24,6 +29,7 @@ export default {
       let brand = {};
       let upperCategory = {};
       let category = {};
+      let goods = {};
       if (dir === 'brand') {
         /* get brands */
 
@@ -35,16 +41,16 @@ export default {
         upperCategory = category.upper ? categories[category.upper] : {};
       } else if (dir === 'goods') {
         /* get goods */
-        const goods = { brand: 'musinsastandard', category: '001001' };
+        goods = stubGoods[id];
         /* get categories */
-        /* get brands */
-
-        brand = brands[goods.brand];
         category = categories[goods.category];
         upperCategory = categories[goods.category.slice(0, 3)];
+        /* get brands */
+        brand = brands[goods.brand];
       }
       context.commit('mutateBrand', brand);
       context.commit('mutateCategories', { upperCategory, category });
+      context.commit('mutateGoods', goods);
     },
   },
   getters: {
@@ -73,8 +79,6 @@ export default {
           forCategory.push({ text, href });
         }
       }
-      console.log(forBrand);
-      console.log(forCategory);
       return { forBrand, forCategory };
     },
   },
