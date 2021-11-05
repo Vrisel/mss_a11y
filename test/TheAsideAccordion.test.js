@@ -21,8 +21,6 @@ describe('Accordion', () => {
     const sup = wrapper.find('sup');
     expect(sup.text()).toBe('Top');
 
-    expect(wrapper.vm.total).toBe(39377 + 9246);
-
     expect(wrapper.find('.count').text().includes(',')).toBe(true);
   });
 });
