@@ -10,10 +10,10 @@
       />
       <Nuxt />
     </main>
+    <TheFooter :class="{ 'aside-expanded': isAsideExpanded }" />
     <client-only>
       <TheHovermenu />
     </client-only>
-    <TheFooter :class="{ 'aside-expanded': isAsideExpanded }" />
   </div>
 </template>
 

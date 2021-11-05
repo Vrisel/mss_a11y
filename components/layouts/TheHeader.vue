@@ -5,7 +5,7 @@
         <b-img
           blank
           blank-color="grey"
-          width="2600px"
+          width="1580px"
           height="100px"
           alt="top banner"
         />
@@ -19,6 +19,7 @@
         @click="closeTopBanner"
       >
         <b-icon icon="x" />
+        <span class="sr-only">배너 닫기</span>
       </b-button>
     </div>
 

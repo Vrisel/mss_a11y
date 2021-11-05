@@ -7,14 +7,14 @@
       type="button"
       squared
       variant="outline-secondary"
-      class="aside-toggler"
+      class="aside-toggler bg-white"
       @click="toggleAside"
     >
       <b-icon icon="list" />
     </b-button>
 
     <div>
-      <b-tabs justified class="mt-3">
+      <b-tabs justified class="mt-3" :value="isBrand ? 1 : 0">
         <b-tab title="품목">
           <div class="accordion" role="tablist">
             <TheAsideAccordion v-bind="best" />
@@ -22,6 +22,7 @@
               v-for="category in categoryList"
               :key="category.id"
               v-bind="category"
+              :visible="visible"
             />
           </div>
         </b-tab>
@@ -29,7 +30,7 @@
         <b-tab title="브랜드">
           <b-form>
             <b-form-group
-              label="브랜드명 입력"
+              label="브랜드 검색"
               label-for="brandSearch"
               label-cols="auto"
             >
@@ -193,6 +194,19 @@ export default {
     brands() {
       return stubBrands;
     },
+    isBrand() {
+      return this.$route.name.split('-')[0].toLowerCase() === 'brand';
+    },
+    visible() {
+      const dir = this.$route.name.split('-')[0].toLowerCase();
+      let result = 'best';
+      if (dir === 'category') {
+        result = this.$route.params.id.slice(0, 3);
+      } else if (dir === 'goods') {
+        result = this.$store.state.category.id.slice(0, 3);
+      }
+      return result;
+    },
   },
   methods: {
     toggleAside() {
@@ -203,7 +217,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 aside {
   position: absolute;
   width: 270px;
@@ -222,10 +236,13 @@ aside.aside-collapsed {
   left: 270px;
   z-index: 1;
 }
+.aside-toggler:hover {
+  color: inherit;
+}
 .btn-group {
   display: inline-block;
 }
-.btn-group > label.btn {
+.btn-group >>> label.btn {
   vertical-align: middle;
   font-size: 0.8rem;
   width: 22px;
@@ -246,5 +263,8 @@ aside.aside-collapsed {
 }
 .phonenumber {
   font-size: 1.5em;
+}
+aside >>> .nuxt-link-exact-active {
+  font-weight: bold;
 }
 </style>

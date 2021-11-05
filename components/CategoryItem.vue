@@ -1,7 +1,7 @@
 <template>
   <article>
     <p class="text-center">
-      <b-link>
+      <b-link :href="`/goods/${id}`">
         <b-img
           :src="imgsrc"
           blank
@@ -12,12 +12,16 @@
       </b-link>
     </p>
     <header>
-      <b-link class="brand" :href="`/brand/${brand.to}`">
-        {{ brand.name }}
-      </b-link>
-      <b-link :href="`/goods/${goods.to}`">
-        {{ goods.name.slice(0, 25) }}
-      </b-link>
+      <p class="mb-0">
+        <b-link class="brand" :href="`/brand/${brand.id}`">
+          {{ brand.name_kor }}
+        </b-link>
+      </p>
+      <p class="mb-0">
+        <b-link :href="`/goods/${id}`">
+          {{ name.slice(0, 25) }}
+        </b-link>
+      </p>
     </header>
     <p class="price">
       <del v-if="sale > 0">{{ `${price.toLocaleString()}원` }}</del>
@@ -33,7 +37,7 @@
     <b-badge v-if="badge.text" class="tag" :variant="badge.variant">
       {{ badge.text }}
     </b-badge>
-    <b-dropdown size="sm">
+    <b-dropdown size="sm" variant="outline-secondary">
       <template #button-content>MEMBERSHIP PRICE</template>
       <b-dropdown-text>
         <span class="float-left">무신사 회원가</span>
@@ -55,7 +59,7 @@
       <b-rating
         size="sm"
         inline
-        :value="rating.avg / 20"
+        :value="rating.avg"
         readonly
         variant="warning"
       />
@@ -84,6 +88,8 @@
 <script>
 export default {
   props: {
+    id: { type: String, default: '' },
+    name: { type: String, default: '' },
     price: { type: Number, default: 0 },
     saleprice: { type: Number, default: 0 },
     badge: {
@@ -96,13 +102,7 @@ export default {
     brand: {
       type: Object,
       default() {
-        return { name: '', to: '' };
-      },
-    },
-    goods: {
-      type: Object,
-      default() {
-        return { name: '', to: '' };
+        return { name: '', id: '' };
       },
     },
     rating: {

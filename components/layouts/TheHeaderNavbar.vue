@@ -5,10 +5,10 @@
       <b-input-group size="sm">
         <b-form-input type="search" name="q"></b-form-input>
         <b-input-group-append>
-          <b-input-group-text>
+          <b-button>
             <b-icon icon="camera" aria-hidden="true" />
             <span class="sr-only">이미지 검색</span>
-          </b-input-group-text>
+          </b-button>
           <b-button type="submit" size="sm">
             <b-icon icon="search" aria-hidden="true" />
             <span class="sr-only">검색</span>

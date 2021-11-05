@@ -72,12 +72,11 @@ export default {
         const text = upperCategory.name_kor;
         const href = `/category/${upperCategory.id}`;
         forCategory.push({ text, href });
-
-        if (Object.keys(category).length) {
-          const text = category.name_kor;
-          const href = `/category/${category.id}`;
-          forCategory.push({ text, href });
-        }
+      }
+      if (Object.keys(category).length) {
+        const text = category.name_kor;
+        const href = `/category/${category.id}`;
+        forCategory.push({ text, href });
       }
       return { forBrand, forCategory };
     },
