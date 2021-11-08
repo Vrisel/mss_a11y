@@ -12,51 +12,52 @@
       <b-link class="divider">로고 다운로드</b-link>
     </div>
     <b-card-group class="mx-3">
-      <b-card>
+      <b-card tag="address">
         <b-card-title>무신사 편집팀</b-card-title>
-        <b-card-text>
-          <address>
-            서울특별시 강남구 신사동 640-2 로빈명품관 지하1층, 무신사 편집팀
-            <br />
-            <span class="text-danger">
-              (무신사 스토어 반송지 아님, 해당주소 반송불가)
-            </span>
-          </address>
+        <b-card-text text-tag="div">
+          <p class="text-break">
+            (06017) 서울특별시 강남구 언주로174길 30 로빈명품관 지하1층, 무신사
+            편집팀
+          </p>
+          <p class="text-danger">
+            (무신사 스토어 반송지 아님, 해당주소 반송불가)
+          </p>
         </b-card-text>
       </b-card>
-      <b-card>
+      <b-card tag="address">
         <b-card-title>무신사 스토어</b-card-title>
-        <b-card-text>
-          <address>
+        <b-card-text text-tag="div">
+          <p class="text-break">
             (17759) 경기도 평택시 신장로 55 CJ대한통운 평택합정집배점 내 무신사
             물류센터
+          </p>
+          <p class="text-primary">
+            (무신사 스토어 자체 배송 상품 물류센터)
             <br />
-            <span class="text-primary">
-              (무신사 스토어 자체 배송 상품 물류센터)
-              <br />
-              (배송센터 직접 물건 수령 불가)
-            </span>
-          </address>
+            (배송센터 직접 물건 수령 불가)
+          </p>
         </b-card-text>
       </b-card>
-      <b-card>
+      <b-card tag="address">
         <b-card-title>
           고객센터
           <span class="bracket">
             <b-link href="" class="divider">FAQ</b-link>
             <b-link href="" class="divider">1:1질문하기</b-link>
-            <b-link href="mailto:cs@musinsa.com" class="divider"
-              >이메일문의</b-link
-            >
+            <b-link href="mailto:cs@musinsa.com" class="divider">
+              이메일문의
+            </b-link>
           </span>
         </b-card-title>
-        <b-card-text>
+        <b-card-text text-tag="div">
           <strong>
             대표전화 <b-link href="tel:1544-7199">1544-7199</b-link>
           </strong>
-          <b-badge variant="success" href="">
-            전화문의 전 <span class="text-light">FAQ</span>
-          </b-badge>
+          <b-link href="#">
+            <b-badge variant="success" href="">
+              전화문의 전 <span class="text-light">FAQ</span>
+            </b-badge>
+          </b-link>
           <p>
             1번 : 배송 / 교환 / 환불관련<br />
             2번 : 결제 / 회원 관련<br />
@@ -89,19 +90,21 @@
       </div>
       <div>
         <p class="h6 mb-2">COPYRIGHT &copy; MUSINSA ALL RIGHTS RESERVED.</p>
-        <p class="mb-2">
-          <b-link>
+        <b-link class="mb-2">
+          <p>
             무신사닷컴 내 매거진, 스트리트스냅, 스토어 등 무신사 자체 생성
             콘텐츠는 무신사닷컴 및 무신사 계약업체에 저작권이 있습니다.
-            <br />
+          </p>
+          <p>
             이러한 콘텐츠는 출처를 밝히고(무신사닷컴 표기 및 www.musinsa.com
             링크 포함 필수) 비상업적인 용도에서만 활용하실 수 있습니다.
-          </b-link>
-        </p>
+          </p>
+        </b-link>
 
         <p>
           커뮤니티 및 중고장터, 댓글 등 무신사 회원이 올린 이미지가 저작권에
-          위배될 경우 <b-link>신고</b-link> 하시면 검토 후 삭제하겠습니다.
+          위배될 경우 <b-link><strong>신고</strong></b-link> 하시면 검토 후
+          삭제하겠습니다.
         </p>
       </div>
       <hr class="my-3" />
