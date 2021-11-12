@@ -24,7 +24,7 @@ export default {
   actions: {
     setLocation(context, route) {
       const dir = route.name.toLowerCase().split('-')[0];
-      const id = route.params.id.toLowerCase() || '';
+      const id = route.params.id ? route.params.id.toLowerCase() : '';
 
       let brand = {};
       let upperCategory = {};
