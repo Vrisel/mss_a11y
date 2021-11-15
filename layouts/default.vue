@@ -2,15 +2,19 @@
   <div id="__default">
     <TheHeader />
     <TheAside @asideExpansion="toggleAside" />
-    <main :class="{ 'aside-expanded': isAsideExpanded }">
+    <b-container :class="{ 'aside-expanded': isAsideExpanded }">
+      <!-- breadcrumb가 main 안에 있으면
+      랜드마크를 이용한 탐색 시에 혼동을 줄 수 있음 -->
       <b-breadcrumb
         v-if="breadcrumbs.length > 1"
         :items="breadcrumbs"
         class="ml-5"
       />
-      <Nuxt />
-    </main>
-    <TheFooter :class="{ 'aside-expanded': isAsideExpanded }" />
+      <main>
+        <Nuxt />
+      </main>
+      <TheFooter />
+    </b-container>
     <client-only>
       <TheHovermenu />
     </client-only>
@@ -68,8 +72,7 @@ main,
 footer {
   transition: 0.5s;
 }
-main.aside-expanded,
-footer.aside-expanded {
+.container.aside-expanded {
   margin-left: 270px;
 }
 .breadcrumb-item + .breadcrumb-item::before {
