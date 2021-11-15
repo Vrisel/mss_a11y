@@ -4,7 +4,8 @@
       <h2>{{ category.name_eng }}</h2>
     </div>
     <b-row>
-      <ul>
+      <div v-if="!goodsList">상품이 없습니다.</div>
+      <ul v-else>
         <li v-for="goods of goodsList" :key="goods.name">
           <CategoryItem v-bind="goods" />
         </li>
