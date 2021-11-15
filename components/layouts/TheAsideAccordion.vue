@@ -1,15 +1,22 @@
 <template>
-  <b-card no-body>
-    <b-card-header v-b-toggle="id" header-tag="header" role="tab">
-      <strong>{{ name_kor }}</strong>
-      <sup>{{ name_eng }}</sup>
-    </b-card-header>
-    <b-collapse
-      :id="id"
-      accordion="category"
-      :visible="visible == id"
-      role="tabpanel"
+  <b-card no-body :aria-labelledby="`accordion-${id}`">
+    <b-card-header
+      :id="`accordion-${id}`"
+      v-b-toggle="id"
+      header-tag="h4"
+      role="region"
+      @click="toggleVisible"
+      @keydown.space.prevent="$emit('click', $event)"
     >
+      <strong>{{ name_kor }}</strong>
+      <sup lang="en">{{ name_eng }}</sup>
+      <!-- <b-icon
+        :icon="!visibleModel ? 'plus' : 'dash'"
+        :aria-label="!visibleModel ? '펼치기' : '접기'"
+        class="float-right"
+      /> -->
+    </b-card-header>
+    <b-collapse :id="id" accordion="category">
       <b-card-body>
         <b-link v-if="!isBest" :to="`/category/${id}`">
           전체
@@ -43,8 +50,13 @@ export default {
         };
       },
     },
-    visible: { type: String, default: 'best' },
+    visible: { type: String, default: '' },
   },
+  /* data() {
+    return {
+      visibleModel: false,
+    };
+  }, */
   computed: {
     isBest() {
       return (
@@ -54,6 +66,14 @@ export default {
       );
     },
   },
+  /* mounted() {
+    this.visibleModel = this.visible === this.id;
+  }, */
+  /* methods: {
+    toggleVisible() {
+      this.visibleModel = !this.visibleModel;
+    },
+  }, */
 };
 </script>
 

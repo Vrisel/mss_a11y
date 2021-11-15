@@ -1,8 +1,12 @@
 <template>
   <aside
+    role="complementary"
+    aria-labelledby="aside-header"
     class="px-3"
     :class="isAsideExpanded ? 'aside-expanded' : 'aside-collapsed'"
+    :aria-expanded="isAsideExpanded ? 'true' : 'false'"
   >
+    <h2 id="aside-header" class="sr-only">사이드 메뉴</h2>
     <b-button
       type="button"
       squared
@@ -10,13 +14,19 @@
       class="aside-toggler bg-white"
       @click="toggleAside"
     >
-      <b-icon icon="list" />
+      <b-icon icon="list" aria-labelledby="aside-toggle-label" />
+      <span id="aside-toggle-label" class="sr-only">
+        사이드 메뉴 {{ isAsideExpanded ? '접기' : '펼치기' }}
+      </span>
     </b-button>
 
-    <div>
+    <nav role="navigation" aria-label="품목별, 브랜드별">
       <b-tabs justified class="mt-3" :value="isBrand ? 1 : 0">
-        <b-tab title="품목">
-          <div class="accordion" role="tablist">
+        <b-tab>
+          <template #title>
+            <h3>품목</h3>
+          </template>
+          <div ref="accordion" class="accordion" role="tablist">
             <TheAsideAccordion v-bind="best" />
             <TheAsideAccordion
               v-for="category in categoryList"
@@ -27,51 +37,37 @@
           </div>
         </b-tab>
 
-        <b-tab title="브랜드">
-          <b-form>
+        <b-tab>
+          <template #title>
+            <h3>브랜드</h3>
+          </template>
+          <b-form
+            role="search"
+            aria-label="브랜드"
+            class="my-3"
+            @submit.prevent
+          >
             <b-form-group
-              label="브랜드 검색"
+              label="브랜드명 검색"
               label-for="brandSearch"
               label-cols="auto"
             >
-              <b-form-input
-                id="brandSearch"
-                v-model="brandSearch"
-                type="search"
-                size="sm"
-              />
+              <b-input-group>
+                <b-form-input
+                  id="brandSearch"
+                  v-model="brandSearch"
+                  type="search"
+                  size="sm"
+                />
+                <b-input-group-append>
+                  <b-button type="submit" size="sm">검색</b-button>
+                </b-input-group-append>
+              </b-input-group>
             </b-form-group>
             <b-form-group>
               <b-radio-group
                 v-model="brandSearchOption"
-                :options="[
-                  'A',
-                  'B',
-                  'C',
-                  'D',
-                  'E',
-                  'F',
-                  'G',
-                  'H',
-                  'I',
-                  'J',
-                  'K',
-                  'L',
-                  'M',
-                  'N',
-                  'O',
-                  'P',
-                  'Q',
-                  'R',
-                  'S',
-                  'T',
-                  'U',
-                  'V',
-                  'W',
-                  'X',
-                  'Y',
-                  'Z',
-                ]"
+                aria-label="브랜드 검색 옵션"
                 buttons
                 button-variant="outline-secondary"
               >
@@ -83,7 +79,7 @@
                     단독
                   </b-form-radio>
                   <b-form-radio class="longer-label" value="favorite">
-                    <b-iconstack scale="0.9">
+                    <b-iconstack scale="0.9" aria-label="즐겨찾기">
                       <b-icon stacked icon="circle-fill" variant="danger" />
                       <b-icon
                         stacked
@@ -93,6 +89,10 @@
                       />
                     </b-iconstack>
                   </b-form-radio>
+                  <b-form-radio v-for="i of 26" :key="i">
+                    <!-- 'A'.charCodeAt(0) == 65, `Z`.charCodeAt(0) == 88 -->
+                    {{ String.fromCharCode(i + 64) }}
+                  </b-form-radio>
                   <b-form-radio class="longer-label" value="etc">
                     etc.
                   </b-form-radio>
@@ -100,29 +100,35 @@
               </b-radio-group>
             </b-form-group>
           </b-form>
-          <b-list-group>
+          <b-list-group aria-label="브랜드" role="listbox">
             <b-list-group-item v-for="brand in brands" :key="brand.id">
               <b-row>
-                <b-col>
+                <b-col class="pl-2 pr-1">
                   <b-link :to="`/brand/${brand.id}`">
-                    <strong>{{ brand.name_eng.toUpperCase() }}</strong>
+                    <strong lang="en">
+                      {{ brand.name_eng.toUpperCase() }}
+                    </strong>
                     <br />
                     <span class="">
                       {{ brand.name_kor }}
                       <span class="count">
-                        ({{ brand.count.toLocaleString() }})
+                        {{ brand.count.toLocaleString() }}
+                        <span class="sr-only">개 상품</span>
                       </span>
                     </span>
                   </b-link>
                 </b-col>
-                <b-col cols="auto">
+                <b-col cols="auto" class="pr-1">
                   <b-checkbox
                     v-model="brand.isFav"
                     :value="true"
                     button
                     button-variant="outline-danger"
                   >
-                    <b-icon :icon="brand.isFav ? 'heart-fill' : 'heart'" />
+                    <b-icon
+                      aria-label="즐겨찾기"
+                      :icon="brand.isFav ? 'heart-fill' : 'heart'"
+                    />
                   </b-checkbox>
                 </b-col>
               </b-row>
@@ -131,40 +137,87 @@
         </b-tab>
       </b-tabs>
 
-      <b-tabs justified class="mt-3">
-        <b-tab title="랭킹"></b-tab>
-        <b-tab title="업데이트"></b-tab>
-        <b-tab title="세일"></b-tab>
-        <b-tab title="단독"></b-tab>
+      <b-tabs justified class="my-3" aria-label="">
+        <b-tab>
+          <template #title>
+            <h3>랭킹</h3>
+          </template>
+          <div>준비 중입니다.</div>
+        </b-tab>
+        <b-tab>
+          <template #title>
+            <h3>업데이트</h3>
+          </template>
+          <div>준비 중입니다.</div>
+        </b-tab>
+        <b-tab>
+          <template #title>
+            <h3>세일</h3>
+          </template>
+          <div>준비 중입니다.</div>
+        </b-tab>
+        <b-tab>
+          <template #title>
+            <h3>단독</h3>
+          </template>
+          <div>준비 중입니다.</div>
+        </b-tab>
       </b-tabs>
+    </nav>
 
+    <div aria-label="">
       <div>
         <b-link href="tel:1544-7199" class="phonenumber">
-          <b-icon icon="telephone-fill" />
-          1544-7199
+          <span title="대표 전화">
+            <b-icon icon="telephone-fill" aria-label="" aria-hidden="true" />
+            1544-7199
+          </span>
         </b-link>
-        <div>
-          <p>1번 : 배송 / 교환 / 환불 관련</p>
-          <p>2번 : 결제 / 회원 관련</p>
-          <p>오전9시~오후6시 운영 / 토,일,휴일 휴무</p>
-        </div>
-        <hr />
-        <div>
-          <p>전화 전 <b-link href="">자주 묻는 질문</b-link>을 확인하세요.</p>
-          <p><b-link href="">1:1문의</b-link>를 통해서도 상담이 가능합니다.</p>
-          <p>상품 문의는 각 상품 Q&A를 이용하세요.</p>
-        </div>
-        <div>
-          <b-button size="sm" squared href="" variant="outline-secondary">
-            회원후기
-          </b-button>
-          <b-button size="sm" squared href="" variant="outline-secondary">
-            회원 혜택
-          </b-button>
-          <b-button size="sm" squared href="" variant="outline-secondary">
-            공지사항
-          </b-button>
-        </div>
+        <p>
+          1번 : 배송 / 교환 / 환불 관련<br />
+          2번 : 결제 / 회원 관련<br />
+          <time datetime="09:00+09">오전9시</time>~<time datetime="18:00+09"
+            >오후6시</time
+          >
+          운영 / 토,일,휴일 휴무
+        </p>
+      </div>
+      <hr />
+      <div>
+        <p>
+          전화 전 <b-link href="">자주 묻는 질문</b-link>을 확인하세요.<br />
+          <b-link href="">1:1문의</b-link>를 통해서도 상담이 가능합니다.<br />
+          상품 문의는 각 상품 Q&A를 이용하세요.
+        </p>
+      </div>
+      <div>
+        <b-button
+          type="button"
+          size="sm"
+          squared
+          href=""
+          variant="outline-secondary"
+        >
+          회원후기
+        </b-button>
+        <b-button
+          type="button"
+          size="sm"
+          squared
+          href=""
+          variant="outline-secondary"
+        >
+          회원 혜택
+        </b-button>
+        <b-button
+          type="button"
+          size="sm"
+          squared
+          href=""
+          variant="outline-secondary"
+        >
+          공지사항
+        </b-button>
       </div>
     </div>
   </aside>
@@ -208,6 +261,23 @@ export default {
       return result;
     },
   },
+  mounted() {
+    const acc = this.$refs.accordion;
+    acc.addEventListener('keydown', function (e) {
+      const key = e.which.toString();
+      const target = e.target;
+      // 헤더에서 동작
+      if (target.classList.contains('card-header')) {
+        // Up(38), Down(40)
+        if (key.match(/38|40/)) {
+          e.preventDefault();
+          // const current = target.querySelector('strong').innerText;
+          console.log(acc.getElementsByTagName('h3'));
+        }
+      }
+    });
+  },
+  destroyed() {},
   methods: {
     toggleAside() {
       this.isAsideExpanded = !this.isAsideExpanded;
@@ -224,6 +294,8 @@ aside {
   float: left;
   transition: 0.5s;
   font-size: 0.8rem;
+  border-right: 1px solid gray;
+  z-index: 1;
 }
 aside.aside-expanded {
   left: 0px;
@@ -233,8 +305,7 @@ aside.aside-collapsed {
 }
 .aside-toggler {
   position: absolute;
-  left: 270px;
-  z-index: 1;
+  left: 269px;
 }
 .aside-toggler:hover {
   color: inherit;
@@ -260,6 +331,12 @@ aside.aside-collapsed {
 .list-group {
   max-height: 1511px;
   overflow: auto;
+}
+.count::before {
+  content: '(';
+}
+.count::after {
+  content: ')';
 }
 .phonenumber {
   font-size: 1.5em;
