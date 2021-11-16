@@ -5,7 +5,6 @@
       v-b-toggle="id"
       header-tag="h4"
       role="region"
-      @click="toggleVisible"
       @keydown.space.prevent="$emit('click', $event)"
     >
       <strong>{{ name_kor }}</strong>
