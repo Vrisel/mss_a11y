@@ -4,12 +4,16 @@ import stubGoods from '@/test/stub.goods.js';
 
 export default {
   state: () => ({
+    topBanner: true,
     brand: {},
     upperCategory: {},
     category: {},
     goods: {},
   }),
   mutations: {
+    closeTopBanner(state) {
+      state.topBanner = false;
+    },
     mutateBrand(state, brand) {
       state.brand = brand;
     },

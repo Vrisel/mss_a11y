@@ -306,6 +306,7 @@ aside.aside-collapsed {
 .aside-toggler {
   position: absolute;
   left: 269px;
+  top: -1px;
 }
 .aside-toggler:hover {
   color: inherit;
