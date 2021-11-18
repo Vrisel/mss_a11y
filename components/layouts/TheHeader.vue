@@ -1,5 +1,5 @@
 <template>
-  <header role="banner" class="border-bottom border-secondary">
+  <header role="banner">
     <div v-if="topBanner" aria-label="top banner">
       <b-link href="">
         <b-img

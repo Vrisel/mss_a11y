@@ -291,10 +291,7 @@ export default {
 aside {
   position: absolute;
   width: 270px;
-  float: left;
-  transition: 0.5s;
   font-size: 0.8rem;
-  border-right: 1px solid gray;
   z-index: 1;
 }
 aside.aside-expanded {
@@ -306,7 +303,6 @@ aside.aside-collapsed {
 .aside-toggler {
   position: absolute;
   left: 269px;
-  top: -1px;
 }
 .aside-toggler:hover {
   color: inherit;
