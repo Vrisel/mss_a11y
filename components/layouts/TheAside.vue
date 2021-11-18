@@ -186,7 +186,7 @@
       <div>
         <p>
           전화 전 <b-link href="">자주 묻는 질문</b-link>을 확인하세요.<br />
-          <b-link href="">1:1문의</b-link>를 통해서도 상담이 가능합니다.<br />
+          <b-link to="">1:1문의</b-link>를 통해서도 상담이 가능합니다.<br />
           상품 문의는 각 상품 Q&A를 이용하세요.
         </p>
       </div>
@@ -195,7 +195,7 @@
           type="button"
           size="sm"
           squared
-          href=""
+          to=""
           variant="outline-secondary"
         >
           회원후기
@@ -204,7 +204,7 @@
           type="button"
           size="sm"
           squared
-          href=""
+          to=""
           variant="outline-secondary"
         >
           회원 혜택
@@ -213,7 +213,7 @@
           type="button"
           size="sm"
           squared
-          href=""
+          to=""
           variant="outline-secondary"
         >
           공지사항

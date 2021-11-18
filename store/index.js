@@ -59,28 +59,28 @@ export default {
   },
   getters: {
     getBreadcrumbs(state) {
-      const forBrand = [{ text: '무신사 스토어', href: '/' }];
+      const forBrand = [{ text: '무신사 스토어', to: '/' }];
       const brand = state.brand;
       if (Object.keys(brand).length) {
-        forBrand.push({ text: '브랜드숍', href: '/brand' });
+        forBrand.push({ text: '브랜드숍', to: '/brand' });
 
         const text = `${brand.name_eng}(${brand.name_kor})`;
-        const href = `/brand/${brand.id}`;
-        forBrand.push({ text, href });
+        const to = `/brand/${brand.id}`;
+        forBrand.push({ text, to });
       }
 
-      const forCategory = [{ text: '무신사 스토어', href: '/' }];
+      const forCategory = [{ text: '무신사 스토어', to: '/' }];
       const upperCategory = state.upperCategory;
       const category = state.category;
       if (Object.keys(upperCategory).length) {
         const text = upperCategory.name_kor;
-        const href = `/category/${upperCategory.id}`;
-        forCategory.push({ text, href });
+        const to = `/category/${upperCategory.id}`;
+        forCategory.push({ text, to });
       }
       if (Object.keys(category).length) {
         const text = category.name_kor;
-        const href = `/category/${category.id}`;
-        forCategory.push({ text, href });
+        const to = `/category/${category.id}`;
+        forCategory.push({ text, to });
       }
       return { forBrand, forCategory };
     },

@@ -1,6 +1,8 @@
 <template>
   <b-navbar print>
-    <b-navbar-brand href="/" class="h1 text-white">MUSINSA</b-navbar-brand>
+    <b-navbar-brand tag="h1">
+      <router-link to="/">MUSINSA</router-link>
+    </b-navbar-brand>
     <b-nav-form>
       <b-input-group size="sm">
         <b-form-input type="search" name="q"></b-form-input>

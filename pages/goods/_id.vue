@@ -5,14 +5,14 @@
     <article>
       <header>
         <div class="bread">
-          <b-link :href="`/category/${upperCategory.id}`">
+          <b-link :to="`/category/${upperCategory.id}`">
             {{ upperCategory.name_kor }}
           </b-link>
           >
-          <b-link :href="`/category/${category.id}`">
+          <b-link :to="`/category/${category.id}`">
             {{ category.name_kor }}
           </b-link>
-          <b-link :href="`/brand/${brand.id}`">({{ brand.name_kor }})</b-link>
+          <b-link :to="`/brand/${brand.id}`">({{ brand.name_kor }})</b-link>
         </div>
         <h1>{{ goods.name }}</h1>
         <div>

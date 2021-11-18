@@ -1,7 +1,7 @@
 <template>
   <article>
     <p class="text-center">
-      <b-link :href="`/goods/${id}`">
+      <b-link :to="`/goods/${id}`">
         <b-img
           :src="imgsrc"
           blank
@@ -13,12 +13,12 @@
     </p>
     <header>
       <p class="mb-0">
-        <b-link class="brand" :href="`/brand/${brand.id}`">
+        <b-link class="brand" :to="`/brand/${brand.id}`">
           {{ brand.name_kor }}
         </b-link>
       </p>
       <p class="mb-0">
-        <b-link :href="`/goods/${id}`">
+        <b-link :to="`/goods/${id}`">
           {{ name.slice(0, 25) }}
         </b-link>
       </p>

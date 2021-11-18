@@ -1,7 +1,7 @@
 <template>
   <header role="banner">
     <div v-if="topBanner" aria-label="top banner">
-      <b-link href="">
+      <b-link to="">
         <b-img
           blank
           blank-color="grey"
@@ -29,9 +29,9 @@
 
     <nav role="navigation" aria-label="채널">
       <b-nav class="py-2 bg-light">
-        <b-nav-item href="">스탠다드</b-nav-item>
-        <b-nav-item href="">테라스샵</b-nav-item>
-        <b-nav-item href="">셀렉트</b-nav-item>
+        <b-nav-item to="">스탠다드</b-nav-item>
+        <b-nav-item to="">테라스샵</b-nav-item>
+        <b-nav-item to="">셀렉트</b-nav-item>
       </b-nav>
     </nav>
 
@@ -43,7 +43,7 @@
         >
           로그인
         </b-nav-item>
-        <b-nav-item v-else href="">
+        <b-nav-item v-else to="">
           <strong>Lv.{{ level }} {{ name }}</strong>
         </b-nav-item>
         <template v-if="logged">

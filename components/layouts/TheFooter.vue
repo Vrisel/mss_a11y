@@ -42,8 +42,8 @@
         <b-card-title>
           고객센터
           <span class="bracket">
-            <b-link href="" class="divider">FAQ</b-link>
-            <b-link href="" class="divider">1:1질문하기</b-link>
+            <b-link to="" class="divider">FAQ</b-link>
+            <b-link to="" class="divider">1:1질문하기</b-link>
             <b-link href="mailto:cs@musinsa.com" class="divider">
               이메일문의
             </b-link>
@@ -53,8 +53,8 @@
           <strong>
             대표전화 <b-link href="tel:1544-7199">1544-7199</b-link>
           </strong>
-          <b-link href="#">
-            <b-badge variant="success" href="">
+          <b-link to="">
+            <b-badge variant="success">
               전화문의 전 <span class="text-light">FAQ</span>
             </b-badge>
           </b-link>
