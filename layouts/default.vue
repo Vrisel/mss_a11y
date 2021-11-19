@@ -1,5 +1,9 @@
 <template>
   <div id="__default">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <TheHeader class="border-bottom" />
     <TheAside @asideExpansion="toggleAside" />
     <div :class="{ 'aside-expanded': isAsideExpanded }" class="border-left">
