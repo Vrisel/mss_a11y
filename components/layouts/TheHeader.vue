@@ -40,6 +40,7 @@
         <b-nav-item
           v-if="!logged"
           link-classes="btn btn-sm btn-outline-secondary rounded-0 mx-3 py-1 my-1"
+          @click="login"
         >
           로그인
         </b-nav-item>
@@ -57,31 +58,10 @@
         </b-nav-item>
         <b-nav-item>고객센터</b-nav-item>
         <template v-if="logged">
-          <b-nav-item>로그아웃</b-nav-item>
+          <b-nav-item @click="logout">로그아웃</b-nav-item>
         </template>
       </b-nav>
     </nav>
-
-    <!-- <ul class="px-3 py-3 clearfix">
-      <li class="float-left mx-2"></li>
-      <template v-if="logged">
-        <li class="float-left mx-2"><b-link>마이페이지</b-link></li>
-        <li class="float-left mx-2">
-          <b-link class="text-danger">좋아요</b-link>
-        </li>
-      </template>
-      <li class="float-left mx-2"><b-link>최근 본 상품</b-link></li>
-      <li class="float-left mx-2">
-        <b-link>
-          장바구니
-          <b-badge pill variant="primary">0</b-badge>
-        </b-link>
-      </li>
-      <li class="float-left mx-2"><b-link>고객센터</b-link></li>
-      <template v-if="logged">
-        <li class="float-left mx-2"><b-link>로그아웃</b-link></li>
-      </template>
-    </ul> -->
   </header>
 </template>
 
@@ -104,6 +84,14 @@ export default {
   methods: {
     closeTopBanner() {
       this.$store.commit('closeTopBanner');
+    },
+    login() {
+      this.logged = true;
+    },
+    logout() {
+      if (confirm('로그아웃 하시겠습니까?')) {
+        this.logged = false;
+      }
     },
   },
 };
