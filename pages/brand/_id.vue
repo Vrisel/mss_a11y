@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <b-container>
     <b-img :alt="brand.name_eng" :src="brand.logo" />
     <div>준비중입니다.</div>
-  </div>
+  </b-container>
 </template>
 
 <script>

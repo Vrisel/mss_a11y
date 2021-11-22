@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <b-container>
     <div class="category">
       <h2>{{ category.name_eng }}</h2>
     </div>
-    <b-row>
+    <b-row no-gutters>
       <div v-if="!goodsList">상품이 없습니다.</div>
       <ul v-else>
         <li v-for="goods of goodsList" :key="goods.name">
@@ -11,7 +11,7 @@
         </li>
       </ul>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>

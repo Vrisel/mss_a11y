@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container>
     <b-img :alt="brand.name_eng" :src="brand.logo" />
 
     <article>
@@ -27,7 +27,7 @@
         </div>
       </header>
     </article>
-  </div>
+  </b-container>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <Tutorial />
+  <b-container>준비중입니다.</b-container>
 </template>
 
 <script>
