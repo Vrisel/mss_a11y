@@ -37,7 +37,9 @@ export default {
       if (dir === 'brand') {
         /* get brands */
 
-        brand = brands[id];
+        if (id) {
+          brand = brands[id];
+        }
       } else if (dir === 'category') {
         /* get categories */
 
@@ -59,10 +61,13 @@ export default {
   },
   getters: {
     getBreadcrumbs(state) {
-      const forBrand = [{ text: '무신사 스토어', to: '/' }];
+      const forBrand = [
+        { text: '무신사 스토어', to: '/' },
+        { text: '브랜드숍', to: '/brand' },
+      ];
       const brand = state.brand;
       if (Object.keys(brand).length) {
-        forBrand.push({ text: '브랜드숍', to: '/brand' });
+        /* forBrand.push({ text: '브랜드숍', to: '/brand' }); */
 
         const text = `${brand.name_eng}(${brand.name_kor})`;
         const to = `/brand/${brand.id}`;
