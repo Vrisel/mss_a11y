@@ -7,13 +7,15 @@
     <TheHeader class="border-bottom" />
     <TheAside @asideExpansion="toggleAside" />
     <div :class="{ 'aside-expanded': isAsideExpanded }" class="border-left">
-      <!-- breadcrumb가 main 안에 있으면
-      랜드마크를 이용한 탐색 시에 혼동을 줄 수 있음 -->
-      <b-breadcrumb
-        v-if="breadcrumbs.length > 1"
-        :items="breadcrumbs"
-        class="ml-5"
-      />
+      <nav role="navigation" aria-label="브레드크럼">
+        <!-- breadcrumb가 main 안에 있으면
+        랜드마크를 이용한 탐색 시에 혼동을 줄 수 있음 -->
+        <b-breadcrumb
+          v-if="breadcrumbs.length > 1"
+          :items="breadcrumbs"
+          class="ml-2 pl-5 py-2 bg-transparent border-bottom"
+        />
+      </nav>
       <main>
         <Nuxt />
       </main>

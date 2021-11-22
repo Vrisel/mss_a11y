@@ -11,13 +11,16 @@
       type="button"
       squared
       variant="outline-secondary"
-      class="aside-toggler bg-white"
+      class="aside-toggler border-top-0 border-left-0 bg-white py-2"
+      :title="`사이드 메뉴 ${isAsideExpanded ? '접기' : '펼치기'}`"
       @click="toggleAside"
     >
-      <b-icon icon="list" aria-labelledby="aside-toggle-label" />
-      <span id="aside-toggle-label" class="sr-only">
-        사이드 메뉴 {{ isAsideExpanded ? '접기' : '펼치기' }}
-      </span>
+      <b-iconstack aria-hidden="true">
+        <b-icon icon="dash" stacked scale="2" shift-v="-5" />
+        <b-icon icon="dash" stacked scale="2" />
+        <b-icon icon="dash" stacked scale="2" shift-v="5" />
+      </b-iconstack>
+      <!-- <b-icon icon="list" aria-hidden="true" scale="1.5" /> -->
     </b-button>
 
     <nav role="navigation" aria-label="품목별, 브랜드별">
@@ -302,7 +305,7 @@ aside.aside-collapsed {
 }
 .aside-toggler {
   position: absolute;
-  left: 269px;
+  left: 270px;
 }
 .aside-toggler:hover {
   color: inherit;
