@@ -4,7 +4,11 @@
       <h2>{{ category.name_eng }}</h2>
     </div>
     <b-row no-gutters>
-      <div v-if="!goodsList">상품이 없습니다.</div>
+      <div v-if="!goodsList">
+        <!-- 왜 class="d-flex justify-content-center"도, class="text-center"도 안 되지? -->
+        <b-spinner v-if="loading" label="목록을 불러오는 중" />
+        <span v-else>상품이 없습니다.</span>
+      </div>
       <ul v-else>
         <li v-for="goods of goodsList" :key="goods.name">
           <CategoryItem v-bind="goods" />
@@ -24,6 +28,11 @@ export default {
     const goodsList = stubGoodsList[params.id];
     return {
       goodsList,
+    };
+  },
+  data() {
+    return {
+      loading: true,
     };
   },
   fetch({ route, store }) {
@@ -46,6 +55,11 @@ export default {
         .filter(Boolean)
         .join(' > ');
     },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.loading = false;
+    }, 5000);
   },
 };
 </script>
