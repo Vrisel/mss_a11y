@@ -52,10 +52,14 @@ export default {
     breadcrumbs() {
       const bc = this.$store.getters.getBreadcrumbs;
       const dir = this.$route.name.toLowerCase().split('-')[0];
-      if (dir === 'category') {
-        return bc.forCategory;
-      } else {
-        return bc.forBrand;
+      switch (dir) {
+        case 'category':
+          return bc.forCategory;
+        case 'brand':
+        case 'goods':
+          return bc.forBrand;
+        default:
+          return [];
       }
     },
   },
