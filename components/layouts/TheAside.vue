@@ -29,13 +29,27 @@
           <template #title>
             <h3>품목</h3>
           </template>
-          <div ref="accordion" class="accordion" role="tablist">
-            <TheAsideAccordion v-bind="best" />
+          <div
+            ref="accordion"
+            class="accordion"
+            role="tablist"
+            @keydown.up="accordionFocus($event, 'up')"
+            @keydown.down="accordionFocus($event, 'down')"
+            @keydown.36="accordionFocus($event, 'home')"
+            @keydown.35="accordionFocus($event, 'end')"
+          >
+            <TheAsideAccordion
+              v-bind="best"
+              key="best"
+              :ref="'accordion-best'"
+              :current="current"
+            />
             <TheAsideAccordion
               v-for="category in categoryList"
               :key="category.id"
+              :ref="`accordion-${category.id}`"
               v-bind="category"
-              :visible="visible"
+              :current="current"
             />
           </div>
         </b-tab>
@@ -238,6 +252,7 @@ export default {
       brandSearch: '',
       brandSearchOption: '',
       isAsideExpanded: true,
+      current: 'best',
     };
   },
   computed: {
@@ -247,44 +262,86 @@ export default {
     categoryList() {
       return stubCategoryList;
     },
+    accordionIds() {
+      const arr = ['best'];
+      arr.push(...Object.keys(this.categoryList));
+      return arr;
+    },
     brands() {
       return stubBrands;
     },
+    /* 위 항목들을 computed로 둔 이유는
+      실제 서비스에서는 비동기로 데이터를 받아올 것이기 때문에..
+      근데 생각해보니 asyncData가 더 맞을 것 같기도 하고 */
     isBrand() {
       return this.$route.name.split('-')[0].toLowerCase() === 'brand';
     },
-    visible() {
-      const dir = this.$route.name.split('-')[0].toLowerCase();
-      let result = 'best';
-      if (dir === 'category') {
-        result = this.$route.params.id.slice(0, 3);
-      } else if (dir === 'goods') {
-        result = this.$store.state.category.id.slice(0, 3);
-      }
-      return result;
-    },
   },
-  mounted() {
-    const acc = this.$refs.accordion;
-    acc.addEventListener('keydown', function (e) {
-      const key = e.which.toString();
-      const target = e.target;
-      // 헤더에서 동작
-      if (target.classList.contains('card-header')) {
-        // Up(38), Down(40)
-        if (key.match(/38|40/)) {
-          e.preventDefault();
-          // const current = target.querySelector('strong').innerText;
-          console.log(acc.getElementsByTagName('h3'));
+  watch: {
+    $route(to) {
+      let dir = to.name;
+      if (dir) {
+        dir = dir.split('-')[0].toLowerCase();
+        if (dir === 'category') {
+          this.current = to.params.id.slice(0, 3);
+          return;
+        } else if (dir === 'goods') {
+          this.current = this.$store.state.category.id.slice(0, 3);
+          return;
         }
       }
-    });
+      this.current = 'best';
+    },
   },
   destroyed() {},
   methods: {
     toggleAside() {
       this.isAsideExpanded = !this.isAsideExpanded;
       this.$emit('asideExpansion', this.isAsideExpanded);
+    },
+    accordionFocus(e, direction) {
+      const target = e.target;
+      // 헤더에서 동작했는지 확인
+      /* 정규식: 'accordion-'으로 시작하고,
+         바로 이어서 1개 이상의 숫자 또는 'best'로 끝난다면
+         뒷부분을 캡처해서 리턴.
+         매치된 전체는 [0], 캡처된 부분은 [1]로 접근 */
+      const id = target.id.match(/^accordion-(\d+$|best$)/);
+      if (id) {
+        const idx = this.accordionIds.findIndex((elem) => elem === id[1]);
+        let nextId;
+        if (idx >= 0) {
+          switch (direction) {
+            case 'up':
+              nextId = this.accordionIds[idx - 1];
+              break;
+            case 'down':
+              nextId = this.accordionIds[idx + 1];
+              break;
+            case 'home':
+              if (idx === 0) return;
+              nextId = this.accordionIds[0];
+              break;
+            case 'end':
+              // eslint-disable-next-line no-case-declarations
+              const last = this.accordionIds.length - 1;
+              if (idx === last) return;
+              nextId = this.accordionIds[last];
+              break;
+            default:
+              return;
+          }
+          if (nextId) {
+            e.preventDefault();
+            const ref = `accordion-${nextId}`;
+            /* v-for로 만들어진 ref는 array에 들어있는데,
+              직접 만든 ref는 바로 나타나기 때문에
+              아래와 같은 구분이 필요함 */
+            const comp = this.$refs[ref][0] || this.$refs[ref];
+            comp.$refs.header.focus();
+          }
+        }
+      }
     },
   },
 };

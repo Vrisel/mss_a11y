@@ -2,6 +2,7 @@
   <b-card no-body :aria-labelledby="`accordion-${id}`">
     <b-card-header
       :id="`accordion-${id}`"
+      ref="header"
       v-b-toggle="id"
       header-tag="h4"
       role="region"
@@ -15,7 +16,7 @@
         class="float-right"
       /> -->
     </b-card-header>
-    <b-collapse :id="id" accordion="category">
+    <b-collapse :id="id" accordion="category" :visible="visible">
       <b-card-body>
         <b-link v-if="!isBest" :to="`/category/${id}`">
           전체
@@ -49,13 +50,8 @@ export default {
         };
       },
     },
-    visible: { type: String, default: '' },
+    current: { type: String, default: '' },
   },
-  /* data() {
-    return {
-      visibleModel: false,
-    };
-  }, */
   computed: {
     isBest() {
       return (
@@ -64,15 +60,10 @@ export default {
         this.id === 'best'
       );
     },
-  },
-  /* mounted() {
-    this.visibleModel = this.visible === this.id;
-  }, */
-  /* methods: {
-    toggleVisible() {
-      this.visibleModel = !this.visibleModel;
+    visible() {
+      return this.current === this.id;
     },
-  }, */
+  },
 };
 </script>
 
