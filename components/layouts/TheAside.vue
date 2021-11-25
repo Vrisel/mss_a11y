@@ -121,7 +121,7 @@
             <b-list-group-item v-for="brand in brands" :key="brand.id">
               <b-row>
                 <b-col class="pl-2 pr-1">
-                  <b-link :to="`/brand/${brand.id}`">
+                  <b-link :to="`/brand/${brand.id}`" class="stretched-link">
                     <strong lang="en">
                       {{ brand.name_eng.toUpperCase() }}
                     </strong>
