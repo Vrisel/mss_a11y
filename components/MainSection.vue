@@ -1,5 +1,9 @@
 <template>
-  <section class="px-2 py-3 border-bottom">
+  <section
+    class="px-2 py-3 border-bottom"
+    @mouseenter="$emit('mouseenter', $event)"
+    @mouseleave="$emit('mouseleave', $event)"
+  >
     <header
       class="pl-2 position-absolute d-flex side-header"
       :class="headerClass"
@@ -19,7 +23,7 @@
       v-model="tabIndex"
       vertical
       no-key-nav
-      nav-wrapper-class="mt-4 side-header"
+      nav-wrapper-class="mt-4 pr-1 side-header"
       content-class="border-left px-3 py-2"
     >
       <slot name="default">
