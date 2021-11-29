@@ -24,12 +24,14 @@
       </p>
     </header>
     <p class="price">
-      <del v-if="sale > 0">{{ `${price.toLocaleString()}원` }}</del>
-      {{
-        sale > 0
-          ? `${saleprice.toLocaleString()}원`
-          : `${price.toLocaleString()}원`
-      }}
+      <del v-if="sale > 0">
+        <span class="sr-only">원가</span>
+        {{ price.toLocaleString() }}원
+      </del>
+      <strong>
+        <span class="sr-only">판매가</span>
+        {{ sale > 0 ? saleprice.toLocaleString() : price.toLocaleString() }}원
+      </strong>
     </p>
     <b-badge v-if="sale" class="sale" variant="danger">
       SALE {{ sale }}%

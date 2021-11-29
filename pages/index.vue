@@ -48,10 +48,12 @@
                   {{ goods.name.replace(/(^.{13}).+/, '$1...') }}
                 </b-link>
                 <p>
-                  <s v-if="goods.saleprice">
+                  <del v-if="goods.saleprice">
+                    <span class="sr-only">원가</span>
                     {{ goods.price.toLocaleString() }}원
-                  </s>
+                  </del>
                   <strong>
+                    <span class="sr-only">판매가</span>
                     {{ (goods.saleprice || goods.price).toLocaleString() }}원
                   </strong>
                 </p>
