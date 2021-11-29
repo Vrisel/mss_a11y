@@ -16,6 +16,7 @@
       </b-link>
     </header>
     <b-tabs
+      v-model="tabIndex"
       vertical
       no-key-nav
       nav-wrapper-class="mt-4 side-header"
@@ -31,6 +32,10 @@
 <script>
 export default {
   props: {
+    value: {
+      type: Number,
+      default: 0,
+    },
     heading: {
       type: String,
       required: true,
@@ -43,6 +48,16 @@ export default {
     headerClass: {
       type: [String, Object, Array],
       default: '',
+    },
+  },
+  data() {
+    return {
+      tabIndex: 0,
+    };
+  },
+  watch: {
+    tabIndex(newVal) {
+      this.$emit('input', newVal);
     },
   },
 };

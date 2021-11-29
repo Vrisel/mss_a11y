@@ -1,17 +1,28 @@
 <template>
   <div>
-    <MainSection heading="랭킹" to="" header-class="pl-5">
+    <MainSection
+      v-model="rankingTabIndex"
+      heading="랭킹"
+      to=""
+      header-class="pl-5"
+    >
       <b-tab>
         <template #title>
           <h3>상품</h3>
-          <ul v-if="ranking">
-            <li v-for="(cat, name) in ranking" :key="name">
-              <b-link>{{ name }}</b-link>
+          <ul v-show="rankingList && rankingTabIndex === 0" style="columns: 2">
+            <li v-for="(cat, name) in rankingList" :key="name">
+              <b-link
+                class="nav-link px-0 py-0"
+                :class="{ active: currentRanking === name }"
+                @click="switchRankingTo(name)"
+              >
+                {{ name }}
+              </b-link>
             </li>
           </ul>
         </template>
-        <ul class="d-flex flex-wrap">
-          <li v-for="(goods, rank) in ranking.상의" :key="goods.id">
+        <ul v-if="ranking.length" class="d-flex flex-wrap">
+          <li v-for="(goods, rank) in ranking" :key="goods.id">
             <article>
               <div class="d-flex flex-column">
                 <span>{{ rank + 1 }}위</span>
@@ -46,6 +57,7 @@
             </article>
           </li>
         </ul>
+        <div v-else>상품이 없습니다.</div>
       </b-tab>
       <b-tab title="브랜드">준비중입니다.</b-tab>
     </MainSection>
@@ -64,6 +76,12 @@ export default {
   components: {
     MainSection,
   },
+  data() {
+    return {
+      rankingTabIndex: 0,
+      currentRanking: '상의',
+    };
+  },
   fetch({ route, store }) {
     store.dispatch('setLocation', route);
   },
@@ -73,8 +91,21 @@ export default {
     };
   },
   computed: {
-    ranking() {
+    rankingList() {
       return rankingList;
+    },
+    ranking() {
+      return this.rankingList[this.currentRanking];
+    },
+  },
+  methods: {
+    getRandomRanking() {
+      const key = Object.keys(this.ranking);
+      const rand = Math.floor(Math.random() * key.length);
+      this.currentRanking = key[rand];
+    },
+    switchRankingTo(to) {
+      this.currentRanking = to;
     },
   },
 };
@@ -85,5 +116,8 @@ export default {
   position: absolute;
   top: 0.5em;
   right: 0.5em;
+}
+* >>> .nav-link.active > ul {
+  font-weight: initial;
 }
 </style>
