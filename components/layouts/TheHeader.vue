@@ -86,7 +86,13 @@ export default {
       this.$store.commit('closeTopBanner');
     },
     login() {
-      this.logged = true;
+      if (
+        confirm(
+          '아직 구현되지 않은 기능이지만 조건부 렌더링을 확인하시겠습니까?'
+        )
+      ) {
+        this.logged = true;
+      }
     },
     logout() {
       if (confirm('로그아웃 하시겠습니까?')) {
