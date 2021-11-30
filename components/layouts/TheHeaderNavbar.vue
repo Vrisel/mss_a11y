@@ -3,7 +3,7 @@
     <b-navbar-brand tag="h1">
       <router-link to="/">MUSINSA</router-link>
     </b-navbar-brand>
-    <b-nav-form>
+    <b-form inline>
       <b-input-group size="sm">
         <b-form-input type="search" name="q"></b-form-input>
         <b-input-group-append>
@@ -15,9 +15,27 @@
           </b-button>
         </b-input-group-append>
       </b-input-group>
-    </b-nav-form>
+    </b-form>
 
-    <!-- 랭킹 영역 -->
+    <!-- <div style="width: 150; position: relative; overflow: hidden">
+      <b-carousel background="gray">
+        <b-carousel-slide
+          v-for="(keyword, rank) in [
+            '숏패딩',
+            '후드티',
+            '니트',
+            '맨투맨',
+            '패딩',
+          ]"
+          :key="rank"
+        >
+          <template #img>
+            <b-img width="150" height="31" blank alt="" />
+          </template>
+          <p style="font-size: 1rem">{{ rank + 1 }}위: {{ keyword }}</p>
+        </b-carousel-slide>
+      </b-carousel>
+    </div> -->
 
     <b-navbar-nav class="ml-auto mr-3">
       <template v-for="n of navItems">
@@ -115,9 +133,16 @@ export default {
 </script>
 
 <style scoped>
-* {
+.navbar {
   font-size: 1.2rem;
   font-weight: 600;
+}
+* >>> .carousel-caption {
+  text-align: start !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0 0.5em;
 }
 * >>> .dropdown-menu {
   min-width: 2em;
