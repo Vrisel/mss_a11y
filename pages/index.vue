@@ -3,7 +3,9 @@
     <MainSection
       v-model="rankingTabIndex"
       heading="랭킹"
-      :to="`/ranking/${rankingTabIndex === 0 ? 'goods' : 'brand'}`"
+      :to="`/ranking/${
+        rankingTabIndex === 0 ? `goods/${currentRanking}` : 'brand'
+      }`"
       header-class="pl-5"
       @mouseenter="stopRankingTimer"
       @mouseleave="setRankingTimer"
