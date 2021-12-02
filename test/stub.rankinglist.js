@@ -3,7 +3,7 @@ export default {
     {
       id: '1752735',
       name: '앤젤 와펜 후드 블랙',
-      brand: { id: 'musinsastandard', name_kor: '마크 곤잘레스' },
+      brand: { id: 'markgonzales', name_kor: '마크 곤잘레스' },
       category: '001004',
       price: 69000,
       saleprice: 31050,

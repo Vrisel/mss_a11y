@@ -11,6 +11,12 @@ export default {
     count: 39377,
     upper: '001',
   },
+  '001004': {
+    id: '001004',
+    name_kor: '후드 티셔츠',
+    count: 14889,
+    upper: '001',
+  },
   '001010': {
     id: '001010',
     name_kor: '긴팔 티셔츠',

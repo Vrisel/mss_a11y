@@ -47,4 +47,28 @@ export default {
     count: 4721,
     isFav: true,
   },
+  giordano: {
+    id: 'giordano',
+    name_eng: 'GIORDANO',
+    name_kor: '지오다노',
+    logo: '',
+    count: 505,
+    isFav: false,
+  },
+  markgonzales: {
+    id: 'markgonzales',
+    name_eng: 'MARK GONZALES',
+    name_kor: '마크 곤잘레스',
+    logo: '',
+    count: 599,
+    isFav: false,
+  },
+  thisisneverthat: {
+    id: 'thisisneverthat',
+    name_eng: 'THISISNEVERTHAT',
+    name_kor: '디스이즈네버댓',
+    logo: '',
+    count: 2685,
+    isFav: false,
+  },
 };
