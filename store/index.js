@@ -9,6 +9,7 @@ export default {
     upperCategory: {},
     category: {},
     goods: {},
+    /* route: {}, */
   }),
   mutations: {
     closeTopBanner(state) {
@@ -24,6 +25,9 @@ export default {
     mutateGoods(state, goods) {
       state.goods = goods;
     },
+    /* mutateRoute(state, route) {
+      state.route = route;
+    }, */
   },
   actions: {
     setLocation(context, route) {
@@ -57,37 +61,63 @@ export default {
       context.commit('mutateBrand', brand);
       context.commit('mutateCategories', { upperCategory, category });
       context.commit('mutateGoods', goods);
+      // context.commit('mutateRoute', route);
     },
   },
   getters: {
     getBreadcrumbs(state) {
-      const forBrand = [
-        { text: '무신사 스토어', to: '/' },
-        { text: '브랜드숍', to: '/brand' },
-      ];
-      const brand = state.brand;
-      if (Object.keys(brand).length) {
-        /* forBrand.push({ text: '브랜드숍', to: '/brand' }); */
+      return function (type, rank) {
+        const bc = [{ text: '무신사 스토어', to: '/' }];
+        switch (type) {
+          case 'brand':
+          case 'goods':
+            bc.push({ text: '브랜드숍', to: '/brand' });
+            // const brand = state.brand;
+            if (Object.keys(state.brand).length) {
+              /* forBrand.push({ text: '브랜드숍', to: '/state.brand' }); */
 
-        const text = `${brand.name_eng}(${brand.name_kor})`;
-        const to = `/brand/${brand.id}`;
-        forBrand.push({ text, to });
-      }
-
-      const forCategory = [{ text: '무신사 스토어', to: '/' }];
-      const upperCategory = state.upperCategory;
-      const category = state.category;
-      if (Object.keys(upperCategory).length) {
-        const text = upperCategory.name_kor;
-        const to = `/category/${upperCategory.id}`;
-        forCategory.push({ text, to });
-      }
-      if (Object.keys(category).length) {
-        const text = category.name_kor;
-        const to = `/category/${category.id}`;
-        forCategory.push({ text, to });
-      }
-      return { forBrand, forCategory };
+              const text = `${state.brand.name_eng}(${state.brand.name_kor})`;
+              const to = `/brand/${state.brand.id}`;
+              bc.push({ text, to });
+            }
+            break;
+          case 'category':
+            // const upperCategory = state.upperCategory;
+            // const category = state.category;
+            if (Object.keys(state.upperCategory).length) {
+              const text = state.upperCategory.name_kor;
+              const to = `/category/${state.upperCategory.id}`;
+              bc.push({ text, to });
+            }
+            if (Object.keys(state.category).length) {
+              const text = state.category.name_kor;
+              const to = `/category/${state.category.id}`;
+              bc.push({ text, to });
+            }
+            break;
+          case 'ranking': {
+            let keyword = '';
+            switch (rank) {
+              case 'goods':
+                keyword = '상품';
+                break;
+              case 'brand':
+                keyword = '브랜드';
+                break;
+              case 'keyword':
+                keyword = '검색어';
+                break;
+              default:
+                break;
+            }
+            bc.push({ text: `${keyword} 랭킹`, to: '' });
+            break;
+          }
+          default:
+            break;
+        }
+        return bc;
+      };
     },
   },
 };

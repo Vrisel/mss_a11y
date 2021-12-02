@@ -50,17 +50,10 @@ export default {
   },
   computed: {
     breadcrumbs() {
-      const bc = this.$store.getters.getBreadcrumbs;
       const dir = this.$route.name.toLowerCase().split('-')[0];
-      switch (dir) {
-        case 'category':
-          return bc.forCategory;
-        case 'brand':
-        case 'goods':
-          return bc.forBrand;
-        default:
-          return [];
-      }
+      const rank = this.$route.name.toLowerCase().split('-')[1] || '';
+      const bc = this.$store.getters.getBreadcrumbs(dir, rank);
+      return bc;
     },
   },
   methods: {
