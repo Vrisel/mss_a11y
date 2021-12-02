@@ -9,6 +9,7 @@ export default {
     upperCategory: {},
     category: {},
     goods: {},
+    gender: 'all',
     /* route: {}, */
   }),
   mutations: {
@@ -24,6 +25,19 @@ export default {
     },
     mutateGoods(state, goods) {
       state.goods = goods;
+    },
+    mutateGender(state, gender) {
+      switch (gender.toLowerCase()) {
+        case 'male':
+          state.gender = 'male';
+          break;
+        case 'female':
+          state.gender = 'female';
+          break;
+        default:
+          state.gender = 'all';
+          break;
+      }
     },
     /* mutateRoute(state, route) {
       state.route = route;
