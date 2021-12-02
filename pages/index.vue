@@ -6,6 +6,7 @@
       :to="`/ranking/${
         rankingTabIndex === 0 ? `goods/${currentRanking}` : 'brand'
       }`"
+      :aria-desc="currentRanking"
       header-class="pl-5"
       @mouseenter="stopRankingTimer"
       @mouseleave="setRankingTimer"
@@ -16,6 +17,7 @@
           <ul v-show="rankingList && rankingTabIndex === 0" style="columns: 2">
             <li v-for="(cat, name) in rankingList" :key="name">
               <b-link
+                :id="name"
                 class="nav-link px-0 py-0"
                 :class="{ active: currentRanking === name }"
                 @click="switchRankingTo(name)"
@@ -85,7 +87,7 @@ export default {
   data() {
     return {
       rankingTabIndex: 0,
-      rankingTimer: this.setRankingTimer(),
+      rankingTimer: 0,
       currentRanking: '상의',
     };
   },
@@ -107,27 +109,31 @@ export default {
   },
   watch: {
     rankingTabIndex(to) {
+      this.stopRankingTimer();
       if (to === 0) {
-        this.rankingTimer = this.setRankingTimer();
-      } else {
-        this.stopRankingTimer();
+        this.setRankingTimer();
       }
     },
+  },
+  mounted() {
+    this.setRankingTimer();
   },
   methods: {
     getRandomRanking() {
       const key = Object.keys(this.rankingList);
       const rand = Math.floor(Math.random() * key.length);
       this.currentRanking = key[rand];
-      this.rankingTimer = this.setRankingTimer();
+      this.setRankingTimer();
     },
     setRankingTimer() {
-      return setTimeout(() => {
+      this.stopRankingTimer();
+      this.rankingTimer = setTimeout(() => {
         this.getRandomRanking();
       }, 5000);
     },
     stopRankingTimer() {
       window.clearTimeout(this.rankingTimer);
+      this.rankingTimer = 0;
     },
     switchRankingTo(to) {
       this.currentRanking = to;
