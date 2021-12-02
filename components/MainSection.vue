@@ -8,14 +8,19 @@
       class="pl-2 position-absolute d-flex side-header"
       :class="headerClass"
     >
-      <h2 id="ranking">
+      <h2 :id="`heading-${heading}`">
         <slot name="heading">
           <strong>
             {{ heading }}
           </strong>
         </slot>
       </h2>
-      <b-link v-if="to" :to="to" class="ml-auto mr-1">
+      <b-link
+        v-if="to"
+        :to="to"
+        class="ml-auto mr-1"
+        :aria-describedby="`${ariaDesc} heading-${heading}`"
+      >
         <small>더 보기</small>
       </b-link>
     </header>
@@ -51,6 +56,10 @@ export default {
     },
     headerClass: {
       type: [String, Object, Array],
+      default: '',
+    },
+    ariaDesc: {
+      type: String,
       default: '',
     },
   },
