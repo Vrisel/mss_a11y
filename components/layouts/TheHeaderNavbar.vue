@@ -48,7 +48,7 @@
             v-for="i of n.items"
             :key="i.name"
             :to="i.to"
-            disabled
+            :disabled="!i.enabled"
           >
             {{ i.name }}
           </b-dropdown-item>
@@ -66,9 +66,9 @@ export default {
         {
           name: '랭킹',
           items: [
-            { name: '상품', to: '#' },
-            { name: '브랜드', to: '#' },
-            { name: '검색어', to: '#' },
+            { name: '상품', to: '/ranking/goods', enabled: true },
+            { name: '브랜드', to: '/ranking/brand', enabled: true },
+            { name: '검색어', to: '/ranking/keyword', enabled: true },
           ],
         },
         {
