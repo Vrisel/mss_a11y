@@ -15,6 +15,11 @@ describe('CategoryItem', () => {
     });
 
     expect(wrapper.vm.sale).toBe(0);
-    expect(wrapper.find('.price').text()).toBe('13,900원');
+    expect(
+      wrapper
+        .find('.price')
+        .text()
+        .match(/[\d,]+원/)[0]
+    ).toBe('13,900원');
   });
 });
