@@ -40,6 +40,7 @@
 ## 활용한 기술
 
 - 기본: [Nuxt.js](https://nuxtjs.org/)
+- State 관리: [Vuex](https://vuex.vuejs.org/kr/)
 - CSS Library: [Bootstrap-Vue](https://bootstrap-vue.org/)
 - Linter: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
 - 단위테스트: [Jest](https://jestjs.io/)
