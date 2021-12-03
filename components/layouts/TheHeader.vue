@@ -5,7 +5,7 @@
         <b-img
           blank
           blank-color="grey"
-          width="1580px"
+          width="1600px"
           height="100px"
           alt="빈 배너"
         />
