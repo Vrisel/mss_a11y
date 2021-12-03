@@ -42,14 +42,14 @@
               v-bind="best"
               key="best"
               :ref="'accordion-best'"
-              :current="current"
+              :current="currentAccordion"
             />
             <TheAsideAccordion
               v-for="category in categoryList"
               :key="category.id"
               :ref="`accordion-${category.id}`"
               v-bind="category"
-              :current="current"
+              :current="currentAccordion"
             />
           </div>
         </b-tab>
@@ -62,7 +62,7 @@
             role="search"
             aria-label="브랜드"
             class="my-3"
-            @submit.prevent
+            @submit.prevent="brandSearch"
           >
             <b-form-group
               label="브랜드명 검색"
@@ -72,9 +72,10 @@
               <b-input-group>
                 <b-form-input
                   id="brandSearch"
-                  v-model="brandSearch"
+                  v-model="brandSearchWord"
                   type="search"
                   size="sm"
+                  @input="brandInitial = ''"
                 />
                 <b-input-group-append>
                   <b-button type="submit" size="sm">검색</b-button>
@@ -82,13 +83,38 @@
               </b-input-group>
             </b-form-group>
             <b-form-group>
-              <b-radio-group
+              <b-form-checkbox-group
                 v-model="brandSearchOption"
+                buttons
+                button-variant="outline-secondary"
                 aria-label="브랜드 검색 옵션"
+              >
+                <b-form-checkbox value="best" class="longer-label-3">
+                  BEST</b-form-checkbox
+                ><b-form-checkbox value="exclusive" class="longer-label-3">
+                  단독</b-form-checkbox
+                ><b-form-checkbox value="favorite" class="longer-label-3">
+                  <b-iconstack scale="0.9" aria-hidden="true">
+                    <b-icon stacked icon="circle-fill" variant="danger" />
+                    <b-icon
+                      stacked
+                      icon="heart-fill"
+                      variant="white"
+                      scale="0.7"
+                      aria-hidden="true"
+                      title="즐겨찾기"
+                    />
+                  </b-iconstack>
+                  <span class="sr-only">즐겨찾기</span>
+                </b-form-checkbox>
+              </b-form-checkbox-group>
+              <b-radio-group
+                v-model="brandInitial"
+                aria-label="브랜드 이니셜"
                 buttons
                 button-variant="outline-secondary"
               >
-                <template #first>
+                <!-- <template #first>
                   <b-form-radio class="longer-label" value="best">
                     BEST
                   </b-form-radio>
@@ -106,14 +132,17 @@
                       />
                     </b-iconstack>
                   </b-form-radio>
-                  <b-form-radio v-for="i of 26" :key="i">
-                    <!-- 'A'.charCodeAt(0) == 65, `Z`.charCodeAt(0) == 88 -->
-                    {{ String.fromCharCode(i + 64) }}
-                  </b-form-radio>
-                  <b-form-radio class="longer-label" value="etc">
-                    etc.
-                  </b-form-radio>
-                </template>
+                </template> -->
+                <!-- 'A'.charCodeAt(0) == 65, `Z`.charCodeAt(0) == 88 -->
+                <b-form-radio
+                  v-for="i of 26"
+                  :key="i"
+                  :value="String.fromCharCode(i + 64)"
+                >
+                  {{ String.fromCharCode(i + 64) }} </b-form-radio
+                ><b-form-radio class="longer-label-2" value="etc">
+                  기타
+                </b-form-radio>
               </b-radio-group>
             </b-form-group>
           </b-form>
@@ -235,10 +264,11 @@ export default {
   components: { TheAsideAccordion },
   data() {
     return {
-      brandSearch: '',
-      brandSearchOption: '',
+      brandSearchWord: '',
+      brandSearchOption: [],
+      brandInitial: '',
       isAsideExpanded: true,
-      current: 'best',
+      currentAccordion: 'best',
     };
   },
   computed: {
@@ -269,14 +299,14 @@ export default {
       if (dir) {
         dir = dir.split('-')[0].toLowerCase();
         if (dir === 'category') {
-          this.current = to.params.id.slice(0, 3);
+          this.currentAccordion = to.params.id.slice(0, 3);
           return;
         } else if (dir === 'goods') {
-          this.current = this.$store.state.category.id.slice(0, 3);
+          this.currentAccordion = this.$store.state.category.id.slice(0, 3);
           return;
         }
       }
-      this.current = 'best';
+      this.currentAccordion = 'best';
     },
   },
   destroyed() {},
@@ -329,6 +359,15 @@ export default {
         }
       }
     },
+    brandSearch() {
+      alert(
+        '검색 기능 준비 중입니다.\n' +
+          '현재 조건:\n' +
+          `  검색어: ${this.brandSearchWord}\n` +
+          `  옵  션: ${this.brandSearchOption}\n` +
+          `  이니셜: ${this.brandInitial}`
+      );
+    },
   },
 };
 </script>
@@ -365,11 +404,11 @@ aside.aside-collapsed {
   margin: 0 2px 2px 0;
   border-radius: 0;
 }
-.longer-label {
+.longer-label-2 {
   width: 46px !important;
 }
-.favorite-label {
-  width: 188px !important;
+.longer-label-3 {
+  width: 70px !important;
 }
 .list-group {
   max-height: 1511px;
