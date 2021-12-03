@@ -1,5 +1,8 @@
 <template>
   <div id="__default">
+    <nav id="shortcut">
+      <a href="#main">본문 바로가기</a>
+    </nav>
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
       rel="stylesheet"
@@ -16,7 +19,7 @@
           class="ml-2 pl-5 py-2 bg-transparent border-bottom"
         />
       </nav>
-      <main>
+      <main id="main">
         <Nuxt />
       </main>
       <TheFooter />
@@ -71,6 +74,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   width: 1600px;
+}
+#shortcut {
+  position: absolute;
+  text-align: center;
+  font-size: 0;
+  height: 0;
+  border: 0;
+  z-index: -1;
+}
+#shortcut:focus-within {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  padding: 1em 2em;
+  height: 3em;
+  background-color: pink;
+  z-index: 10;
 }
 main,
 footer {
