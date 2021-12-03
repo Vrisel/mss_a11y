@@ -155,27 +155,13 @@
       </b-tabs>
 
       <b-tabs justified class="my-3" aria-label="">
-        <b-tab>
+        <b-tab
+          v-for="p of ['랭킹', '업데이트', '세일', '단독']"
+          :key="p"
+          title-link-class="px-0"
+        >
           <template #title>
-            <h3>랭킹</h3>
-          </template>
-          <div>준비 중입니다.</div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <h3>업데이트</h3>
-          </template>
-          <div>준비 중입니다.</div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <h3>세일</h3>
-          </template>
-          <div>준비 중입니다.</div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <h3>단독</h3>
+            <h3>{{ p }}</h3>
           </template>
           <div>준비 중입니다.</div>
         </b-tab>
