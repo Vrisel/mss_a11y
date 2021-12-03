@@ -29,7 +29,7 @@
 
     <nav role="navigation" aria-label="채널">
       <b-nav class="py-2 bg-light">
-        <b-nav-item to="">스탠다드</b-nav-item>
+        <b-nav-item to="/brand/musinsastandard">스탠다드</b-nav-item>
         <b-nav-item to="">테라스샵</b-nav-item>
         <b-nav-item to="">셀렉트</b-nav-item>
       </b-nav>
@@ -86,13 +86,14 @@ export default {
       this.$store.commit('closeTopBanner');
     },
     login() {
-      if (
+      /* if (
         confirm(
-          '아직 구현되지 않은 기능이지만 조건부 렌더링을 확인하시겠습니까?'
+          '준비중입니다.\n' +
+            '확인을 누르시면 로그인 동작을 확인할 수 있습니다.'
         )
-      ) {
-        this.logged = true;
-      }
+      ) { */
+      this.logged = true;
+      // }
     },
     logout() {
       if (confirm('로그아웃 하시겠습니까?')) {

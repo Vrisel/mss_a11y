@@ -1,16 +1,18 @@
 <template>
-  <b-navbar print>
+  <b-navbar print :variant="color" type="dark">
     <b-navbar-brand tag="h1">
-      <router-link to="/">MUSINSA</router-link>
+      <router-link to="/">
+        {{ h1 }}
+      </router-link>
     </b-navbar-brand>
-    <b-form inline>
+    <b-form inline @submit="submitSearch">
       <b-input-group size="sm">
-        <b-form-input type="search" name="q"></b-form-input>
+        <b-form-input type="search" name="q" :value="q"></b-form-input>
         <b-input-group-append>
-          <b-button title="이미지 검색">
+          <b-button type="button" title="이미지 검색" class="border">
             <b-icon icon="camera" aria-hidden="true" />
           </b-button>
-          <b-button type="submit" size="sm" title="검색">
+          <b-button type="submit" title="검색" class="border">
             <b-icon icon="search" aria-hidden="true" />
           </b-button>
         </b-input-group-append>
@@ -42,7 +44,11 @@
         <b-nav-item v-if="n.to" :key="n.name" :to="n.to">
           {{ n.name }}
         </b-nav-item>
-        <b-nav-dropdown v-else :key="n.name" no-caret>
+        <b-nav-dropdown
+          v-else
+          :key="n.name"
+          menu-class="rounded-0 py-1 text-center"
+        >
           <template #button-content>{{ n.name }}</template>
           <b-dropdown-item
             v-for="i of n.items"
@@ -60,8 +66,15 @@
 
 <script>
 export default {
+  /* props: {
+    q: {
+      type: String,
+      default: '',
+    },
+  }, */
   data() {
     return {
+      q: this.$route.query.q,
       navItems: [
         {
           name: '랭킹',
@@ -129,6 +142,40 @@ export default {
       ],
     };
   },
+  computed: {
+    color() {
+      switch (this.$store.state.gender) {
+        case 'male':
+          return 'primary';
+        case 'female':
+          return 'secondary';
+        case 'all':
+        default:
+          return 'dark';
+      }
+    },
+    h1() {
+      switch (this.$store.state.gender) {
+        case 'male':
+          return 'MUSINSA MEN';
+        case 'female':
+          return 'WUSINSA';
+        case 'all':
+        default:
+          return 'MUSINSA STORE';
+      }
+    },
+  },
+  watch: {
+    $route(to) {
+      this.q = to.query.q;
+    },
+  },
+  methods: {
+    submitSearch() {
+      alert('검색 기능 준비중입니다.');
+    },
+  },
 };
 </script>
 
@@ -137,6 +184,11 @@ export default {
   font-size: 1.2rem;
   font-weight: 600;
 }
+/* .b-nav-dropdown > ul > li:not(:last-child) {
+  border-bottom: 1px solid gray;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+} */
 * >>> .carousel-caption {
   text-align: start !important;
   bottom: 0;

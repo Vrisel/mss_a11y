@@ -1,6 +1,7 @@
 # 접근성 향상에 초점을 맞춘 **[무신사 스토어](https://store.musinsa.com) 클론**
 
 > 해당 사이트를 이용하며 경험한 [불편함을 해소](#해소한-불편함)해보고자 시작한 프로젝트
+> 페이지 보기: <https://vrisel.github.io/mss_a11y>
 
 ## 개요
 
@@ -20,9 +21,9 @@
   - [x] 품목 리스트의 숫자가 항목 개수임을 ARIA로 명시
   - [x] 표시된 할인 전후 가격 ARIA로 명시 (취소선이 )
 - [x] 헤더 navbar의 확장메뉴가 마우스오버가 아니라 클릭 시에 열리도록 변경
-  - [ ] 확장 가능한 메뉴라는 가이드 필요
-    - [ ] 시각적 가이드
-    - [x] `aria-haspopup="true"` (bootstrap component에서 제공)
+  - [x] 확장 가능한 메뉴라는 가이드 필요
+    - 시각적 가이드 (bootstrap component에 `no-caret` 미적용)
+    - `aria-haspopup="true"` (bootstrap component에서 제공)
 - [x] 로그인 전에는 필요 없는 링크들을 조건부로 표시되도록 함
 - [x] 링크 텍스트에 해당 링크의 기능이 드러나도록 함
   - "자세히보기", "CLICK" 등의 링크 텍스트 사용 지양
