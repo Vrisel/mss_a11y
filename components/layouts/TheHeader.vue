@@ -1,15 +1,15 @@
 <template>
   <header role="banner">
-    <div v-if="topBanner" aria-label="top banner" class="position-relative">
+    <div
+      v-if="topBanner"
+      aria-label="top banner"
+      class="position-relative bg-black d-flex justify-content-center"
+    >
       <b-link to="">
-        <b-img
-          blank
-          blank-color="grey"
-          width="1600px"
-          height="100px"
-          alt="빈 배너"
-        />
-        <!-- 위 alt에 배너 내용을 넣어야 함 -->
+        <figure>
+          <b-img src="https://via.placeholder.com/1600x70" alt="빈 배너" />
+          <!-- 위 alt에 배너 내용을 넣어야 함 -->
+        </figure>
       </b-link>
       <b-button
         type="button"

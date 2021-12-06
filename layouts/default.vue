@@ -73,7 +73,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  width: 1600px;
+  min-width: 1600px;
 }
 #shortcut {
   position: absolute;

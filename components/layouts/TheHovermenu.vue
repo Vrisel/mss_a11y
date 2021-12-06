@@ -137,7 +137,7 @@ export default {
 <style scoped>
 .hover-menu {
   position: fixed;
-  bottom: 0;
+  bottom: 3rem;
   right: 0;
   display: grid;
   width: 51px;
