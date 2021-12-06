@@ -30,8 +30,8 @@
     <nav role="navigation" aria-label="채널">
       <b-nav class="py-2 bg-light">
         <b-nav-item to="/brand/musinsastandard">스탠다드</b-nav-item>
-        <b-nav-item to="">테라스샵</b-nav-item>
-        <b-nav-item to="">셀렉트</b-nav-item>
+        <b-nav-item to="" disabled>테라스샵</b-nav-item>
+        <b-nav-item to="" disabled>셀렉트</b-nav-item>
       </b-nav>
     </nav>
 
@@ -48,15 +48,15 @@
           <strong>Lv.{{ level }} {{ name }}</strong>
         </b-nav-item>
         <template v-if="logged">
-          <b-nav-item>마이페이지</b-nav-item>
-          <b-nav-item class="text-danger">좋아요</b-nav-item>
+          <b-nav-item disabled>마이페이지</b-nav-item>
+          <b-nav-item disabled class="text-danger">좋아요</b-nav-item>
         </template>
-        <b-nav-item>최근 본 상품</b-nav-item>
-        <b-nav-item>
+        <b-nav-item disabled>최근 본 상품</b-nav-item>
+        <b-nav-item disabled>
           장바구니
           <b-badge pill variant="primary">0</b-badge>
         </b-nav-item>
-        <b-nav-item>고객센터</b-nav-item>
+        <b-nav-item disabled>고객센터</b-nav-item>
         <template v-if="logged">
           <b-nav-item @click="logout">로그아웃</b-nav-item>
         </template>
