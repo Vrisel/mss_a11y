@@ -20,6 +20,7 @@ export default {
       category: '001004',
       price: 82000,
       saleprice: 57400,
+      coupon: true,
       rating: { avg: 4.8, count: 4772 },
       favs: 32271,
       forMen: true,

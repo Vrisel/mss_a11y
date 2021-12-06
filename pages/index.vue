@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="__main">
     <MainSection
       v-model="rankingTabIndex"
       heading="랭킹"
@@ -28,40 +28,52 @@
           </ul>
         </template>
         <ul v-if="ranking.length" class="d-flex flex-wrap">
-          <li v-for="(goods, rank) in ranking" :key="goods.id">
-            <article>
-              <div class="d-flex flex-column">
-                <span>{{ rank + 1 }}위</span>
-                <b-badge
-                  v-if="goods.badge"
-                  :variant="goods.badge.variant"
-                  class="ml-auto px-2 py-1"
-                >
-                  {{ goods.badge.text }}
-                </b-badge>
-                <b-link :to="`/goods/${goods.id}`">
+          <li
+            v-for="(goods, rank) in ranking"
+            :key="goods.id"
+            class="hover-bg-light"
+          >
+            <article class="position-relative ranking_item">
+              <small class="position-absolute bg-white px-1 py-1">
+                <strong>{{ rank + 1 }}위</strong>
+              </small>
+              <b-badge
+                v-if="goods.badge"
+                :variant="goods.badge.variant"
+                class="item-badge px-2 py-1"
+              >
+                {{ goods.badge.text }}
+              </b-badge>
+              <b-link :to="`/goods/${goods.id}`">
+                <figure class="px-4 pt-4">
                   <b-img
-                    width="146px"
-                    height="175.2px"
-                    blank-color="gray"
-                    class="mx-4"
+                    src="https://via.placeholder.com/146x175"
+                    :alt="goods.name"
                   />
+                </figure>
+              </b-link>
+              <b-badge v-if="goods.coupon" variant="primary" class="coupon">
+                쿠폰
+              </b-badge>
+              <p class="mx-2 mt-2">
+                <b-link :to="`/brand/${goods.brand.id}`">
+                  {{ goods.brand.name_kor }}
                 </b-link>
-                <span>{{ goods.brand.name_kor }}</span>
+                <br />
                 <b-link :to="`/goods/${goods.id}`">
                   {{ goods.name.replace(/(^.{13}).+/, '$1...') }}
                 </b-link>
-                <p>
-                  <del v-if="goods.saleprice">
-                    <span class="sr-only">원가</span>
-                    {{ goods.price.toLocaleString() }}원
-                  </del>
-                  <strong>
-                    <span class="sr-only">판매가</span>
-                    {{ (goods.saleprice || goods.price).toLocaleString() }}원
-                  </strong>
-                </p>
-              </div>
+              </p>
+              <p class="mx-2 mt-2">
+                <del v-if="goods.saleprice" class="text-secondary">
+                  <span class="sr-only">원가</span>
+                  {{ goods.price.toLocaleString() }}원
+                </del>
+                <strong>
+                  <span class="sr-only">판매가</span>
+                  {{ (goods.saleprice || goods.price).toLocaleString() }}원
+                </strong>
+              </p>
             </article>
           </li>
         </ul>
@@ -143,12 +155,25 @@ export default {
 </script>
 
 <style scoped>
-* >>> .badge {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
-}
 * >>> .nav-link.active > ul {
   font-weight: initial;
+}
+.hover-bg-light:hover {
+  background-color: #f8f9fa;
+}
+.ranking_item {
+  width: 200px;
+  height: 287px;
+  box-sizing: border-box;
+}
+.item-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.coupon {
+  position: absolute;
+  left: 1rem;
+  top: 184px;
 }
 </style>

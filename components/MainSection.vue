@@ -1,8 +1,8 @@
 <template>
   <section
     class="px-2 py-3 border-bottom"
-    @mouseenter="$emit('mouseenter', $event)"
-    @mouseleave="$emit('mouseleave', $event)"
+    @mouseenter="$emit('mouseenter')"
+    @mouseleave="$emit('mouseleave')"
   >
     <header
       class="pl-2 position-absolute d-flex side-header"
