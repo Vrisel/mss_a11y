@@ -18,7 +18,7 @@
       <b-link
         v-if="to"
         :to="to"
-        class="ml-auto mr-1"
+        class="ml-auto pr-2"
         :aria-describedby="`${ariaDesc} heading-${heading}`"
       >
         <small>더 보기</small>
@@ -28,6 +28,7 @@
       v-model="tabIndex"
       vertical
       no-key-nav
+      class="no-gutters"
       nav-wrapper-class="mt-4 pr-1 side-header"
       content-class="border-left px-3 py-2"
     >
@@ -82,6 +83,7 @@ export default {
 }
 * >>> .nav-tabs {
   border: 0;
+  width: 172px;
 }
 * >>> .nav-link {
   border: 0;
