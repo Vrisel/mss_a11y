@@ -1,6 +1,6 @@
 <template>
   <header role="banner">
-    <div v-if="topBanner" aria-label="top banner">
+    <div v-if="topBanner" aria-label="top banner" class="position-relative">
       <b-link to="">
         <b-img
           blank
