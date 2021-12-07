@@ -158,9 +158,6 @@ export default {
 * >>> .nav-link.active > ul {
   font-weight: initial;
 }
-.hover-bg-light:hover {
-  background-color: #f8f9fa;
-}
 .ranking_item {
   width: 200px;
   height: 287px;

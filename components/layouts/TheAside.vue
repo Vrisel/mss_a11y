@@ -184,8 +184,80 @@
       </b-tabs>
 
       <b-tabs justified class="my-3" aria-label="">
+        <b-tab title-link-class="px-0">
+          <template #title>
+            <h3>랭킹</h3>
+          </template>
+          <TheAsideSubtabs to="" class="card">
+            <b-tab title="상품">
+              <b-tabs no-nav-style no-key-nav>
+                <b-tab
+                  v-for="c of [
+                    '전체',
+                    '상의',
+                    '아우터',
+                    '하의',
+                    '가방',
+                    '신발',
+                    '기타',
+                  ]"
+                  :key="c"
+                  :title="c"
+                  no-body
+                >
+                  <ul class="d-flex flex-wrap justify-content-between">
+                    <li
+                      v-for="i of 6"
+                      :key="`${c}-${i}`"
+                      class="position-relative hover-bg-light"
+                    >
+                      <strong class="position-absolute px-1 bg-white">
+                        {{ i }}
+                      </strong>
+                      <img src="https://via.placeholder.com/70x85" alt="" />
+                      <p>
+                        <span class="text-truncate">
+                          {{ '브랜드명' }}
+                        </span>
+                        <b-icon
+                          v-if="i % 3 === 1"
+                          icon="triangle-fill"
+                          scale="0.9"
+                          variant="danger"
+                          aria-label=""
+                        />
+                        <b-icon
+                          v-else-if="i % 3 === 2"
+                          icon="dash"
+                          scale="1.2"
+                          variant="secondary"
+                          aria-label=""
+                        />
+                        <b-icon
+                          v-else
+                          icon="triangle-fill"
+                          flip-v
+                          scale="0.9"
+                          variant="primary"
+                          aria-label=""
+                        />
+                      </p>
+                      <b-link class="stretched-link">{{ '상품명' }}</b-link>
+                      <p>
+                        <strong> {{ `${(99000).toLocaleString()}원` }}</strong>
+                      </p>
+                    </li>
+                  </ul>
+                </b-tab>
+              </b-tabs>
+            </b-tab>
+            <b-tab title="브랜드">
+              <div>흠</div>
+            </b-tab>
+          </TheAsideSubtabs>
+        </b-tab>
         <b-tab
-          v-for="p of ['랭킹', '업데이트', '세일', '단독']"
+          v-for="p of ['업데이트', '세일', '단독']"
           :key="p"
           title-link-class="px-0"
         >
@@ -257,11 +329,12 @@
 
 <script>
 import TheAsideAccordion from './TheAsideAccordion.vue';
+import TheAsideSubtabs from './TheAsideSubtabs.vue';
 import stubCategoryBest from '@/test/stub.categorybest.js';
 import stubCategoryList from '@/test/stub.categorylist.js';
 import stubBrands from '@/test/stub.brands.js';
 export default {
-  components: { TheAsideAccordion },
+  components: { TheAsideAccordion, TheAsideSubtabs },
   data() {
     return {
       brandSearchWord: '',

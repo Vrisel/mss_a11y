@@ -101,4 +101,7 @@ footer {
 .breadcrumb-item + .breadcrumb-item::before {
   content: '〉';
 }
+.hover-bg-light:hover {
+  background-color: #f8f9fa;
+}
 </style>
