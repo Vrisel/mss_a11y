@@ -102,8 +102,6 @@ export default {
   },
   watch: {
     gender(to, from) {
-      console.log(`store: ${this.$store.state.gender}`);
-      console.log(`from:${from} > to:${to}`);
       if (from) this.$store.commit('mutateGender', to);
     },
   },
