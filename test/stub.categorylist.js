@@ -1,5 +1,5 @@
-export default {
-  '001': {
+export default [
+  {
     id: '001',
     name_kor: '상의',
     name_eng: 'Top',
@@ -25,7 +25,7 @@ export default {
       },
     },
   },
-  '002': {
+  {
     id: '002',
     name_kor: '아우터',
     name_eng: 'Outer',
@@ -45,7 +45,7 @@ export default {
       },
     },
   },
-  '003': {
+  {
     id: '003',
     name_kor: '바지',
     name_eng: 'Pants',
@@ -59,7 +59,7 @@ export default {
       },
     },
   },
-  '018': {
+  {
     id: '018',
     name_kor: '스니커즈',
     name_eng: 'Sneakers',
@@ -73,4 +73,4 @@ export default {
       },
     },
   },
-};
+];
