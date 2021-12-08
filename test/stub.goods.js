@@ -1,4 +1,17 @@
 export default {
+  1111111: {
+    id: '1111111',
+    name: '샘플 데이터',
+    brand: 'musinsastandard',
+    category: '001001',
+    price: 15000,
+    saleprice: 10000,
+    badge: { text: '무신사 단독', variant: 'success' },
+    rating: { avg: 3.5, count: 13579 },
+    favs: 12345,
+    forMen: true,
+    forWomen: true,
+  },
   1382658: {
     id: '1382658',
     name: '레이어드 크루 넥 반팔 티셔츠_긴 기장 [화이트]',

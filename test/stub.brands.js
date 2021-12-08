@@ -1,4 +1,12 @@
 export default {
+  samplebrand: {
+    id: 'samplebrand',
+    name_eng: 'SAMPLEBRAND',
+    name_kor: '샘플 브랜드',
+    logo: '',
+    count: 2468,
+    isFav: false,
+  },
   yale: {
     id: 'yale',
     name_eng: 'YALE',

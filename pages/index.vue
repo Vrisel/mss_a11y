@@ -27,57 +27,79 @@
             </li>
           </ul>
         </template>
-        <ul v-if="ranking.length" class="d-flex flex-wrap">
+        <ul class="d-flex flex-wrap">
+          <!-- <ul v-if="ranking.length" class="d-flex flex-wrap">
           <li
             v-for="(goods, rank) in ranking"
             :key="goods.id"
             class="hover-bg-light"
-          >
+          > -->
+          <li v-for="rank of 10" :key="rank" class="hover-bg-light">
             <article class="position-relative ranking_item">
               <small class="position-absolute bg-white px-1 py-1">
-                <strong>{{ rank + 1 }}위</strong>
+                <strong>{{ rank }}위</strong>
               </small>
-              <b-badge
-                v-if="goods.badge"
-                :variant="goods.badge.variant"
-                class="item-badge px-2 py-1"
-              >
-                {{ goods.badge.text }}
-              </b-badge>
-              <b-link :to="`/goods/${goods.id}`">
+              <template v-if="Math.random() < 0.4">
+                <b-badge
+                  v-if="Math.random() < 0.4"
+                  variant="success"
+                  class="item-badge px-2 py-1"
+                >
+                  {{ '무신사 단독' }}
+                </b-badge>
+                <b-badge
+                  v-else-if="Math.random() < 0.3"
+                  variant="primary"
+                  class="item-badge px-2 py-1"
+                >
+                  {{ '부티크' }}
+                </b-badge>
+                <b-badge
+                  v-else-if="Math.random() < 0.1"
+                  variant="danger"
+                  class="item-badge px-2 py-1"
+                >
+                  {{ '한정 판매' }}
+                </b-badge>
+              </template>
+              <b-link :to="`/goods/${'1111111'}`">
                 <figure class="px-4 pt-4">
                   <b-img
                     src="https://via.placeholder.com/146x175"
-                    :alt="goods.name"
+                    :alt="'랭킹 상품'"
                   />
                 </figure>
               </b-link>
-              <b-badge v-if="goods.coupon" variant="primary" class="coupon">
+              <b-badge
+                v-if="Math.random() < 0.3"
+                variant="primary"
+                class="coupon"
+              >
                 쿠폰
               </b-badge>
               <p class="mx-2 mt-2">
-                <b-link :to="`/brand/${goods.brand.id}`">
-                  {{ goods.brand.name_kor }}
+                <b-link :to="`/brand/${'samplebrand'}`">
+                  {{ `랭킹 ${rank}위 브랜드` }}
                 </b-link>
                 <br />
-                <b-link :to="`/goods/${goods.id}`">
-                  {{ goods.name.replace(/(^.{13}).+/, '$1...') }}
+                <b-link :to="`/goods/${'1111111'}`">
+                  {{ `랭킹 ${rank}위 상품명`.replace(/(^.{13}).+/, '$1...') }}
                 </b-link>
               </p>
               <p class="mx-2 mt-2">
-                <del v-if="goods.saleprice" class="text-secondary">
+                <!-- <del v-if="goods.saleprice" class="text-secondary">
                   <span class="sr-only">원가</span>
                   {{ goods.price.toLocaleString() }}원
-                </del>
+                </del> -->
                 <strong>
                   <span class="sr-only">판매가</span>
-                  {{ (goods.saleprice || goods.price).toLocaleString() }}원
+                  {{ Math.floor(Math.random() * 1500000).toLocaleString() }}원
                 </strong>
               </p>
             </article>
           </li>
         </ul>
-        <div v-else>상품이 없습니다.</div>
+        <!-- <div v-else>상품이 없습니다.</div> -->
       </b-tab>
       <b-tab title="브랜드">준비중입니다.</b-tab>
     </MainSection>
