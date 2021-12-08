@@ -83,12 +83,11 @@
                 {{ i }}
               </strong>
               <figure
-                class="d-inline-block align-middle"
+                class="d-table-cell align-middle text-center"
                 style="width: 70px; height: 70px; padding: 7.5px"
               >
                 <img
                   src="https://via.placeholder.com/55x20"
-                  class="w-100 d-inline-block align-middle"
                   :alt="`${i}위 브랜드`"
                 />
               </figure>
