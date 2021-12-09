@@ -248,11 +248,10 @@ export default {
   display: inline-block;
 }
 .btn-group >>> label.btn {
-  vertical-align: middle;
   font-size: 0.8rem;
   width: 22px;
   height: 22px;
-  padding: 0;
+  padding: 2px 0;
   margin: 0 2px 2px 0;
   border-radius: 0;
 }
