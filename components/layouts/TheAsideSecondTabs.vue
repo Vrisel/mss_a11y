@@ -40,27 +40,13 @@
                     <span class="text-truncate">
                       {{ '브랜드명' }}
                     </span>
-                    <b-icon
-                      v-if="i % 3 === 1"
-                      icon="triangle-fill"
-                      scale="0.9"
-                      variant="danger"
-                      aria-label="랭크 상승"
-                    />
-                    <b-icon
-                      v-else-if="i % 3 === 2"
-                      icon="dash"
-                      scale="1.2"
-                      variant="secondary"
-                      aria-label="랭크 유지"
-                    />
-                    <b-icon
-                      v-else
-                      icon="triangle-fill"
-                      flip-v
-                      scale="0.9"
-                      variant="primary"
-                      aria-label="랭크 하락"
+                    <RankIcon
+                      :change="
+                        Math.random() > 0.3
+                          ? Math.round((Math.random() - 0.5) * 10)
+                          : 0
+                      "
+                      without-number
                     />
                   </p>
                   <b-link class="stretched-link">{{ '상품명' }}</b-link>
@@ -96,27 +82,13 @@
                 <b-link class="stretched-link text-truncate">
                   {{ '브랜드명' }}
                 </b-link>
-                <b-icon
-                  v-if="i % 3 === 1"
-                  icon="triangle-fill"
-                  scale="0.9"
-                  variant="danger"
-                  aria-label="랭크 상승"
-                />
-                <b-icon
-                  v-else-if="i % 3 === 2"
-                  icon="dash"
-                  scale="1.2"
-                  variant="secondary"
-                  aria-label="랭크 유지"
-                />
-                <b-icon
-                  v-else
-                  icon="triangle-fill"
-                  flip-v
-                  scale="0.9"
-                  variant="primary"
-                  aria-label="랭크 하락"
+                <RankIcon
+                  :change="
+                    Math.random() > 0.3
+                      ? Math.round((Math.random() - 0.5) * 10)
+                      : 0
+                  "
+                  without-number
                 />
               </p>
             </li>
@@ -138,9 +110,10 @@
 </template>
 
 <script>
+import RankIcon from '../RankIcon.vue';
 import TheAsideSubtabs from './TheAsideSubtabs.vue';
 export default {
-  components: { TheAsideSubtabs },
+  components: { TheAsideSubtabs, RankIcon },
 };
 </script>
 

@@ -109,33 +109,13 @@
             <div class="position-relative ranking-brand">
               <p class="d-inline-block bg-white px-3 py-1">
                 <strong>{{ rank }}위</strong>
-                <span v-if="Math.random() < 0.25" class="text-danger">
-                  <b-icon
-                    icon="triangle-fill"
-                    scale="0.8"
-                    aria-hidden="true"
-                    title="랭크 상승"
-                  />
-                  {{ Math.ceil(Math.random() * 5) }}
-                </span>
-                <span v-else-if="Math.random() < 1 / 3" class="text-primary">
-                  <b-icon
-                    icon="triangle-fill"
-                    flip-v
-                    scale="0.8"
-                    aria-hidden="true"
-                    title="랭크 하락"
-                  />
-                  {{ Math.ceil(Math.random() * 5) }}
-                </span>
-                <span v-else class="secondary">
-                  <b-icon
-                    icon="dash"
-                    scale="1.2"
-                    aria-hidden="true"
-                    title="랭크 유지"
-                  />
-                </span>
+                <RankIcon
+                  :change="
+                    Math.random() > 0.3
+                      ? Math.round((Math.random() - 0.5) * 10)
+                      : 0
+                  "
+                />
               </p>
               <b-link
                 to=""
@@ -165,10 +145,12 @@
 
 <script>
 import MainSection from '~/components/MainSection.vue';
+import RankIcon from '~/components/RankIcon.vue';
 import rankingList from '~/test/stub.rankinglist.js';
 export default {
   components: {
     MainSection,
+    RankIcon,
   },
   data() {
     return {
