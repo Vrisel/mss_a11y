@@ -104,4 +104,9 @@ footer {
 .hover-bg-light:hover {
   background-color: #f8f9fa;
 }
+.vertical-middle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
 </style>

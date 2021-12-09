@@ -34,8 +34,8 @@
             :key="goods.id"
             class="hover-bg-light"
           > -->
-          <li v-for="rank of 10" :key="rank" class="hover-bg-light">
-            <article class="position-relative ranking_item">
+          <li v-for="rank of 10" :key="`goods-${rank}`" class="hover-bg-light">
+            <div class="position-relative ranking-item">
               <small class="position-absolute bg-white px-1 py-1">
                 <strong>{{ rank }}위</strong>
               </small>
@@ -83,7 +83,9 @@
                 </b-link>
                 <br />
                 <b-link :to="`/goods/${'1111111'}`">
-                  {{ `랭킹 ${rank}위 상품명`.replace(/(^.{13}).+/, '$1...') }}
+                  {{
+                    `랭킹 ${rank}위 상품명`.replace(/(^.{10}).{4,}/, '$1...')
+                  }}
                 </b-link>
               </p>
               <p class="mx-2 mt-2">
@@ -96,12 +98,62 @@
                   {{ Math.floor(Math.random() * 1500000).toLocaleString() }}원
                 </strong>
               </p>
-            </article>
+            </div>
           </li>
         </ul>
         <!-- <div v-else>상품이 없습니다.</div> -->
       </b-tab>
-      <b-tab title="브랜드">준비중입니다.</b-tab>
+      <b-tab title="브랜드">
+        <ul class="d-flex flex-wrap">
+          <li v-for="rank of 10" :key="`brand-${rank}`" class="hover-bg-light">
+            <div class="position-relative ranking-brand">
+              <p class="d-inline-block bg-white px-3 py-1">
+                <strong>{{ rank }}위</strong>
+                <span v-if="Math.random() < 0.25" class="text-danger">
+                  <b-icon
+                    icon="triangle-fill"
+                    scale="0.8"
+                    aria-hidden="true"
+                    title="랭크 상승"
+                  />
+                  {{ Math.ceil(Math.random() * 5) }}
+                </span>
+                <span v-else-if="Math.random() < 1 / 3" class="text-primary">
+                  <b-icon
+                    icon="triangle-fill"
+                    flip-v
+                    scale="0.8"
+                    aria-hidden="true"
+                    title="랭크 하락"
+                  />
+                  {{ Math.ceil(Math.random() * 5) }}
+                </span>
+                <span v-else class="secondary">
+                  <b-icon
+                    icon="dash"
+                    scale="1.2"
+                    aria-hidden="true"
+                    title="랭크 유지"
+                  />
+                </span>
+              </p>
+              <b-link
+                to=""
+                class="d-block text-center align-middle"
+                style="width: 90px; height: 90px; margin: 36px auto"
+                :title="`랭킹 ${rank}위 브랜드`"
+              >
+                <figure class="vertical-middle">
+                  <img
+                    src="https://via.placeholder.com/90x40"
+                    :alt="`랭킹 ${rank}위 브랜드`"
+                  />
+                </figure>
+              </b-link>
+            </div>
+          </li>
+        </ul>
+      </b-tab>
     </MainSection>
     <MainSection heading="스타일" to="">
       <b-tab title="브랜드 스냅">준비중입니다.</b-tab>
@@ -160,10 +212,12 @@ export default {
       this.setRankingTimer();
     },
     setRankingTimer() {
-      this.stopRankingTimer();
-      this.rankingTimer = setTimeout(() => {
-        this.getRandomRanking();
-      }, 5000);
+      if (this.rankingTabIndex === 0) {
+        this.stopRankingTimer();
+        this.rankingTimer = setTimeout(() => {
+          this.getRandomRanking();
+        }, 5000);
+      }
     },
     stopRankingTimer() {
       window.clearTimeout(this.rankingTimer);
@@ -180,9 +234,15 @@ export default {
 * >>> .nav-link.active > ul {
   font-weight: initial;
 }
-.ranking_item {
+.ranking-item {
   width: 200px;
   height: 287px;
+  box-sizing: border-box;
+}
+.ranking-brand {
+  width: 200px;
+  height: 221px;
+  padding: 15px;
   box-sizing: border-box;
 }
 .item-badge {
