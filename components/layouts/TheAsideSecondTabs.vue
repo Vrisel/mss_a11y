@@ -1,12 +1,12 @@
 <template>
-  <b-tabs justified class="my-3" aria-label="">
+  <b-tabs v-model="tabIndex" justified class="my-3" aria-label="">
     <b-tab title-link-class="px-0">
       <template #title>
         <h3>랭킹</h3>
       </template>
       <TheAsideSubtabs to="" class="card">
         <b-tab title="상품">
-          <b-tabs no-nav-style no-key-nav>
+          <b-tabs v-model="subtabIndeces[0]" no-nav-style no-key-nav>
             <b-tab
               v-for="c of [
                 '전체',
@@ -23,31 +23,24 @@
             >
               <ul class="d-flex flex-wrap justify-content-between">
                 <li
-                  v-for="i of 6"
-                  :key="`${c}-${i}`"
+                  v-for="rank of 6"
+                  :key="`${c}-${rank}`"
                   class="position-relative hover-bg-light"
                 >
                   <strong class="position-absolute px-1 bg-white">
-                    {{ i }}
+                    {{ rank }}
                   </strong>
                   <figure>
                     <img
                       src="https://via.placeholder.com/70x85"
-                      :alt="`${c} ${i}위 상품`"
+                      :alt="`${c} ${rank}위 상품`"
                     />
                   </figure>
                   <p>
                     <span class="text-truncate">
                       {{ '브랜드명' }}
                     </span>
-                    <RankIcon
-                      :change="
-                        Math.random() > 0.3
-                          ? Math.round((Math.random() - 0.5) * 10)
-                          : 0
-                      "
-                      without-number
-                    />
+                    <RankIcon :change="randomList[rank - 1]" without-number />
                   </p>
                   <b-link class="stretched-link">{{ '상품명' }}</b-link>
                   <p>
@@ -61,12 +54,12 @@
         <b-tab title="브랜드">
           <ul class="d-flex flex-wrap justify-content-between">
             <li
-              v-for="i of 9"
-              :key="`brand-${i}`"
+              v-for="rank of 9"
+              :key="`brand-${rank}`"
               class="position-relative hover-bg-light"
             >
               <strong class="position-absolute px-1 bg-white">
-                {{ i }}
+                {{ rank }}
               </strong>
               <figure
                 class="d-block"
@@ -74,7 +67,7 @@
               >
                 <img
                   src="https://via.placeholder.com/55x20"
-                  :alt="`${i}위 브랜드`"
+                  :alt="`${rank}위 브랜드`"
                   class="vertical-middle w-100"
                 />
               </figure>
@@ -82,14 +75,7 @@
                 <b-link class="stretched-link text-truncate">
                   {{ '브랜드명' }}
                 </b-link>
-                <RankIcon
-                  :change="
-                    Math.random() > 0.3
-                      ? Math.round((Math.random() - 0.5) * 10)
-                      : 0
-                  "
-                  without-number
-                />
+                <RankIcon :change="randomList[rank - 1]" without-number />
               </p>
             </li>
           </ul>
@@ -114,6 +100,44 @@ import RankIcon from '../RankIcon.vue';
 import TheAsideSubtabs from './TheAsideSubtabs.vue';
 export default {
   components: { TheAsideSubtabs, RankIcon },
+  data() {
+    return {
+      tabIndex: 0,
+      subtabIndeces: [0, 0, 0, 0],
+      randomList: [], // 추후 제거
+    };
+  },
+  watch: {
+    tabIndex() {
+      this.setRandomNumbers();
+    },
+    subtabIndeces() {
+      this.setRandomNumbers();
+    },
+  },
+  mounted() {
+    this.setRandomNumbers(); // 추후 제거
+  },
+  methods: {
+    getRandomNumber() {
+      // 추후 제거
+      return Math.round(Math.random() * 2) - 1;
+    },
+    setRandomNumbers() {
+      // 추후 제거
+      this.randomList = [
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+      ];
+    },
+  },
 };
 </script>
 

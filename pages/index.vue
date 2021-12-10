@@ -28,40 +28,32 @@
           </ul>
         </template>
         <ul class="d-flex flex-wrap">
-          <!-- <ul v-if="ranking.length" class="d-flex flex-wrap">
-          <li
-            v-for="(goods, rank) in ranking"
-            :key="goods.id"
-            class="hover-bg-light"
-          > -->
           <li v-for="rank of 10" :key="`goods-${rank}`" class="hover-bg-light">
             <div class="position-relative ranking-item">
               <small class="position-absolute bg-white px-1 py-1">
                 <strong>{{ rank }}위</strong>
               </small>
-              <template v-if="Math.random() < 0.4">
-                <b-badge
-                  v-if="Math.random() < 0.4"
-                  variant="success"
-                  class="item-badge px-2 py-1"
-                >
-                  {{ '무신사 단독' }}
-                </b-badge>
-                <b-badge
-                  v-else-if="Math.random() < 0.3"
-                  variant="primary"
-                  class="item-badge px-2 py-1"
-                >
-                  {{ '부티크' }}
-                </b-badge>
-                <b-badge
-                  v-else-if="Math.random() < 0.1"
-                  variant="danger"
-                  class="item-badge px-2 py-1"
-                >
-                  {{ '한정 판매' }}
-                </b-badge>
-              </template>
+              <b-badge
+                v-if="randomList[rank - 1] % 3 === 0"
+                variant="success"
+                class="item-badge px-2 py-1"
+              >
+                {{ '무신사 단독' }}
+              </b-badge>
+              <b-badge
+                v-else-if="randomList[rank - 1] % 4 === 0"
+                variant="primary"
+                class="item-badge px-2 py-1"
+              >
+                {{ '부티크' }}
+              </b-badge>
+              <b-badge
+                v-else-if="randomList[rank - 1] % 5 === 0"
+                variant="danger"
+                class="item-badge px-2 py-1"
+              >
+                {{ '한정 판매' }}
+              </b-badge>
               <b-link :to="`/goods/${'1111111'}`">
                 <figure class="px-4 pt-4">
                   <b-img
@@ -71,7 +63,7 @@
                 </figure>
               </b-link>
               <b-badge
-                v-if="Math.random() < 0.3"
+                v-if="randomList[rank - 1] >= 3"
                 variant="primary"
                 class="coupon"
               >
@@ -89,10 +81,6 @@
                 </b-link>
               </p>
               <p class="mx-2 mt-2">
-                <!-- <del v-if="goods.saleprice" class="text-secondary">
-                  <span class="sr-only">원가</span>
-                  {{ goods.price.toLocaleString() }}원
-                </del> -->
                 <strong>
                   <span class="sr-only">판매가</span>
                   {{ Math.floor(Math.random() * 1500000).toLocaleString() }}원
@@ -101,7 +89,6 @@
             </div>
           </li>
         </ul>
-        <!-- <div v-else>상품이 없습니다.</div> -->
       </b-tab>
       <b-tab title="브랜드">
         <ul class="d-flex flex-wrap">
@@ -109,13 +96,7 @@
             <div class="position-relative ranking-brand">
               <p class="d-inline-block bg-white px-3 py-1">
                 <strong>{{ rank }}위</strong>
-                <RankIcon
-                  :change="
-                    Math.random() > 0.3
-                      ? Math.round((Math.random() - 0.5) * 10)
-                      : 0
-                  "
-                />
+                <RankIcon :change="randomList[rank - 1]" />
               </p>
               <b-link
                 to=""
@@ -157,6 +138,7 @@ export default {
       rankingTabIndex: 0,
       rankingTimer: 0,
       currentRanking: '상의',
+      randomList: [], // 추후 제거
     };
   },
   fetch({ route, store }) {
@@ -177,13 +159,19 @@ export default {
   },
   watch: {
     rankingTabIndex(to) {
+      this.setRandomNumbers(); // 추후 제거
       this.stopRankingTimer();
       if (to === 0) {
         this.setRankingTimer();
       }
     },
+    currentRanking() {
+      // 추후 제거
+      this.setRandomNumbers();
+    },
   },
   mounted() {
+    this.setRandomNumbers(); // 추후 제거
     this.setRankingTimer();
   },
   methods: {
@@ -207,6 +195,25 @@ export default {
     },
     switchRankingTo(to) {
       this.currentRanking = to;
+    },
+    getRandomNumber() {
+      // 추후 제거
+      return Math.round(Math.random() * 10) - 5;
+    },
+    setRandomNumbers() {
+      // 추후 제거
+      this.randomList = [
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+        this.getRandomNumber(),
+      ];
     },
   },
 };
