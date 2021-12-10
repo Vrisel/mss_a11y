@@ -8,7 +8,7 @@
       class="pl-2 position-absolute d-flex side-header"
       :class="headerClass"
     >
-      <h2 :id="`heading-${heading}`">
+      <h2 :id="`heading-${heading}`" class="h6">
         <slot name="heading">
           <strong>
             {{ heading }}
@@ -21,7 +21,7 @@
         class="ml-auto pr-2"
         :aria-describedby="`${ariaDesc} heading-${heading}`"
       >
-        <small>더 보기</small>
+        더 보기
       </b-link>
     </header>
     <b-tabs
@@ -78,6 +78,9 @@ export default {
 </script>
 
 <style scoped>
+section {
+  font-size: 12px;
+}
 * >>> .side-header {
   width: 172px;
 }
@@ -87,7 +90,7 @@ export default {
 }
 * >>> .nav-link {
   border: 0;
-  font-size: 0.9em;
+  font-size: 14px;
 }
 * >>> .nav-link.active {
   font-weight: bold;

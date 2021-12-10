@@ -14,12 +14,17 @@
       <b-tab>
         <template #title>
           <h3>상품</h3>
-          <ul v-show="rankingList && rankingTabIndex === 0" style="columns: 2">
-            <li v-for="(cat, name) in rankingList" :key="name">
+          <ul
+            v-show="rankingList && rankingTabIndex === 0"
+            style="columns: 2"
+            class="px-2 pt-1"
+          >
+            <li v-for="(cat, name) in rankingList" :key="name" class="pt-1">
               <b-link
                 :id="name"
                 class="nav-link px-0 py-0"
                 :class="{ active: currentRanking === name }"
+                style="font-size: 12px"
                 @click="switchRankingTo(name)"
               >
                 {{ name }}
@@ -30,9 +35,9 @@
         <ul class="d-flex flex-wrap">
           <li v-for="rank of 10" :key="`goods-${rank}`" class="hover-bg-light">
             <div class="position-relative ranking-item">
-              <small class="position-absolute bg-white px-1 py-1">
-                <strong>{{ rank }}위</strong>
-              </small>
+              <strong class="position-absolute bg-white p-1">
+                {{ rank }}위
+              </strong>
               <b-badge
                 v-if="randomList[rank - 1] % 3 === 0"
                 variant="success"
@@ -81,6 +86,10 @@
                 </b-link>
               </p>
               <p class="mx-2 mt-2">
+                <del v-if="false" class="text-secondary">
+                  <span class="sr-only">원가</span>
+                  {{ (0).toLocaleString() }}원
+                </del>
                 <strong>
                   <span class="sr-only">판매가</span>
                   {{ Math.floor(Math.random() * 1500000).toLocaleString() }}원
@@ -117,9 +126,61 @@
       </b-tab>
     </MainSection>
     <MainSection heading="스타일" to="">
-      <b-tab title="브랜드 스냅">준비중입니다.</b-tab>
-      <b-tab title="코디숍">준비중입니다.</b-tab>
-      <b-tab title="코디맵">준비중입니다.</b-tab>
+      <b-tab
+        v-for="tab of ['브랜드 스냅', '코디숍', '코디맵']"
+        :key="tab"
+        :title="tab"
+      >
+        <ul class="d-flex flex-wrap overflow-hidden">
+          <li
+            v-for="i of 4"
+            :key="`snap-${i}`"
+            class="hover-bg-light"
+            style="width: 200px; height: 375px; padding: 15px"
+          >
+            <b-link>
+              <figure class="snap-img">
+                <img
+                  src="https://via.placeholder.com/170x255"
+                  :alt="`스냅 이미지`"
+                />
+              </figure>
+            </b-link>
+            <ul class="d-flex flex-column" style="margin-top: 15px">
+              <li class="d-flex position-relative" style="height: 76px">
+                <figure>
+                  <img
+                    src="https://via.placeholder.com/50x60"
+                    :alt="`스냅 아이템 이미지`"
+                  />
+                </figure>
+                <div style="margin-left: 17px; width: 103px">
+                  <p class="text-truncate">
+                    <strong>브랜드</strong>
+                    <br />
+                    <b-link class="stretched-link">
+                      상품명상품명상품명상품명
+                    </b-link>
+                  </p>
+                  <p style="margin-top: 7px">
+                    <template v-if="true">
+                      <del class="text-secondary">
+                        <span class="sr-only">원가</span>
+                        {{ (23000).toLocaleString() }}원
+                      </del>
+                      <br />
+                    </template>
+                    <strong>
+                      <span class="sr-only">판매가</span>
+                      {{ (19000).toLocaleString() }}원
+                    </strong>
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </b-tab>
     </MainSection>
   </div>
 </template>
