@@ -126,7 +126,7 @@ export default {
 aside {
   position: absolute;
   width: 270px;
-  font-size: 0.8rem;
+  font-size: 12px;
   z-index: 1;
 }
 aside.aside-expanded {

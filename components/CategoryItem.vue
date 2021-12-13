@@ -13,13 +13,11 @@
     </p>
     <header>
       <p class="mb-0">
-        <b-link class="brand" :to="`/brand/${brand.id}`">
+        <b-link :to="`/brand/${brand.id}`" class="brand d-block">
           {{ brand.name_kor }}
         </b-link>
-      </p>
-      <p class="mb-0">
-        <b-link :to="`/goods/${id}`">
-          {{ name.slice(0, 25) }}
+        <b-link :to="`/goods/${id}`" class="text-truncate-2">
+          {{ name }}
         </b-link>
       </p>
     </header>

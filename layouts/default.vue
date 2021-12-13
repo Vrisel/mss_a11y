@@ -109,4 +109,15 @@ footer {
   top: 50%;
   transform: translateY(-50%);
 }
+.text-truncate-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  line-height: 1.5em;
+  height: 3em;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 </style>

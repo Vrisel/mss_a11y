@@ -26,6 +26,7 @@
                   v-for="rank of 6"
                   :key="`${c}-${rank}`"
                   class="position-relative hover-bg-light"
+                  style="width: 70px; padding: 2px"
                 >
                   <strong class="position-absolute px-1 bg-white">
                     {{ rank }}
@@ -42,7 +43,9 @@
                     </span>
                     <RankIcon :change="randomList[rank - 1]" without-number />
                   </p>
-                  <b-link class="stretched-link">{{ '상품명' }}</b-link>
+                  <b-link class="stretched-link d-block text-truncate">{{
+                    '상품명상품명상품명상품명'
+                  }}</b-link>
                   <p>
                     <strong> {{ `${(99000).toLocaleString()}원` }}</strong>
                   </p>

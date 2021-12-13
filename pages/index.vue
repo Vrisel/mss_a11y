@@ -75,14 +75,17 @@
                 쿠폰
               </b-badge>
               <p class="mx-2 mt-2">
-                <b-link :to="`/brand/${'samplebrand'}`">
+                <b-link
+                  :to="`/brand/${'samplebrand'}`"
+                  class="d-block text-truncate"
+                >
                   {{ `랭킹 ${rank}위 브랜드` }}
                 </b-link>
-                <br />
-                <b-link :to="`/goods/${'1111111'}`">
-                  {{
-                    `랭킹 ${rank}위 상품명`.replace(/(^.{10}).{4,}/, '$1...')
-                  }}
+                <b-link
+                  :to="`/goods/${'1111111'}`"
+                  class="d-block text-truncate"
+                >
+                  {{ `랭킹 ${rank}위 상품명상품명상품명상품명` }}
                 </b-link>
               </p>
               <p class="mx-2 mt-2">
