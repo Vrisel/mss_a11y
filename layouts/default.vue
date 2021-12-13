@@ -120,4 +120,7 @@ footer {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.font-12 {
+  font-size: 12px;
+}
 </style>

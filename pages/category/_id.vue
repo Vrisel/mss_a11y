@@ -9,9 +9,13 @@
         <b-spinner v-if="loading" label="목록을 불러오는 중" />
         <span v-else>상품이 없습니다.</span>
       </div>
-      <ul v-else>
-        <li v-for="goods of goodsList" :key="goods.name">
-          <CategoryItem v-bind="goods" />
+      <ul v-else class="w-100 d-flex flex-wrap">
+        <li
+          v-for="goods of goodsList"
+          :key="goods.name"
+          class="position-relative hover-bg-light"
+        >
+          <CategoryItem v-bind="goods" class="mx-auto" style="width: 125px" />
         </li>
       </ul>
     </b-row>
@@ -67,15 +71,16 @@ export default {
 <style scoped>
 ul {
   list-style: none;
-  font-size: 0.9rem;
+  font-size: 12px;
 }
 li {
-  float: left;
-  position: relative;
   width: 180px;
-  height: 450px;
+  height: 370px;
   border-right: 1px solid gray;
   border-bottom: 1px solid gray;
-  padding: 0.5em;
+  padding: 18px 0;
+}
+li {
+  width: 14.28571429%;
 }
 </style>
