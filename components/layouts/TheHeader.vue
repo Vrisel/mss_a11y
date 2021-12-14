@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import TheHeaderNavbar from '@/components/layouts/TheHeaderNavbar.vue';
+import TheHeaderNavbar from '~/components/layouts/TheHeaderNavbar.vue';
 export default {
   components: { TheHeaderNavbar },
   data() {

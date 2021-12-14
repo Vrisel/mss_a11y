@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import TheHeader from '@/components/layouts/TheHeader.vue';
-import TheAside from '@/components/layouts/TheAside.vue';
-import TheHovermenu from '@/components/layouts/TheHovermenu.vue';
-import TheFooter from '@/components/layouts/TheFooter.vue';
+import TheHeader from '~/components/layouts/TheHeader.vue';
+import TheAside from '~/components/layouts/TheAside.vue';
+import TheHovermenu from '~/components/layouts/TheHovermenu.vue';
+import TheFooter from '~/components/layouts/TheFooter.vue';
 import category from '@/test/stub.category.js';
-import brands from '~/test/stub.brands.js';
+import brands from '@/test/stub.brands.js';
 export default {
   components: {
     TheHeader,

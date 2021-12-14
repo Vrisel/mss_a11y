@@ -1,7 +1,7 @@
 import { createLocalVue, mount } from '@vue/test-utils';
 import { BootstrapVue } from 'bootstrap-vue';
 import stubCategoryList from './stub.categorylist.js';
-import Accordion from '@/components/layouts/TheAsideAccordion.vue';
+import Accordion from '~/components/layouts/TheAsideAccordion.vue';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);

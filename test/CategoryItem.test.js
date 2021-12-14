@@ -1,7 +1,7 @@
 import { createLocalVue, mount } from '@vue/test-utils';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import stubGoodsList from './stub.goodslist.js';
-import CategoryItem from '@/components/CategoryItem.vue';
+import CategoryItem from '~/components/CategoryItem.vue';
 
 const localVue = createLocalVue();
 localVue.use(BootstrapVue);
