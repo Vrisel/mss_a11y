@@ -62,6 +62,10 @@ export default {
         price: getRandom(50000),
         // saleprice: 10000,
         // badge: { text: '무신사 단독', variant: 'success' },
+        tag:
+          Math.random() < 0.3
+            ? ['exclusive', 'income', 'limited'][getRandom(2)]
+            : '',
         // coupon: Math.random() < 0.2 ? Math.random() : 0,
         rating: {
           avg: getRandom(5, 0.01),

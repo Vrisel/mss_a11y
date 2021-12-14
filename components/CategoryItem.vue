@@ -30,9 +30,7 @@
     <b-badge v-if="sale" class="sale" variant="danger">
       SALE {{ sale }}%
     </b-badge>
-    <b-badge v-if="badge.text" class="tag" :variant="badge.variant">
-      {{ badge.text }}
-    </b-badge>
+    <ListTag :tag="tag" />
     <b-dropdown
       :ref="`dd-${id}`"
       size="sm"
@@ -112,18 +110,21 @@
 </template>
 
 <script>
+import ListTag from './ListTag.vue';
 export default {
+  components: { ListTag },
   props: {
     id: { type: String, default: '' },
     name: { type: String, default: '' },
     price: { type: Number, default: 0 },
     saleprice: { type: Number, default: 0 },
-    badge: {
+    /* badge: {
       type: Object,
       default() {
         return { text: '', variant: '' };
       },
-    },
+    }, */
+    tag: { type: String, default: '' },
     imgsrc: { type: String, default: '' },
     brand: {
       type: Object,
@@ -171,11 +172,6 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-}
-.tag {
-  position: absolute;
-  top: 0.5em;
-  right: 0.5em;
 }
 .men-women {
   position: absolute;
