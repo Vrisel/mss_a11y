@@ -192,25 +192,19 @@
 import MainSection from '~/components/MainSection.vue';
 import RankIcon from '~/components/RankIcon.vue';
 import rankingList from '~/test/stub.rankinglist.js';
+import LayoutDefault from '~/mixins/LayoutDefault.js';
 export default {
   components: {
     MainSection,
     RankIcon,
   },
+  mixins: [LayoutDefault],
   data() {
     return {
       rankingTabIndex: 0,
       rankingTimer: 0,
       currentRanking: '상의',
       randomList: [], // 추후 제거
-    };
-  },
-  fetch({ route, store }) {
-    store.dispatch('setLocation', route);
-  },
-  head() {
-    return {
-      title: '',
     };
   },
   computed: {

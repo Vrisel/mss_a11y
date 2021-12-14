@@ -41,6 +41,7 @@
 
 <script>
 import CategoryItem from '~/components/CategoryItem.vue';
+import LayoutDefault from '~/mixins/LayoutDefault.js';
 // import stubGoodsList from '@/test/stub.goodslist.js';
 
 function getRandom(max, unit = 1) {
@@ -49,7 +50,7 @@ function getRandom(max, unit = 1) {
 
 export default {
   components: { CategoryItem },
-  layout: 'default',
+  mixins: [LayoutDefault],
   asyncData() {
     // const goodsList = stubGoodsList[params.id];
     const goodsList = [];
@@ -83,14 +84,6 @@ export default {
   data() {
     return {
       loading: true,
-    };
-  },
-  fetch({ route, store }) {
-    store.dispatch('setLocation', route);
-  },
-  head() {
-    return {
-      title: this.title,
     };
   },
   computed: {

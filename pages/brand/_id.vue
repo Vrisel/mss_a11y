@@ -6,15 +6,9 @@
 </template>
 
 <script>
+import LayoutDefault from '~/mixins/LayoutDefault.js';
 export default {
-  fetch({ route, store }) {
-    store.dispatch('setLocation', route);
-  },
-  head() {
-    return {
-      title: this.title,
-    };
-  },
+  mixins: [LayoutDefault],
   computed: {
     brand() {
       return this.$store.state.brand;
