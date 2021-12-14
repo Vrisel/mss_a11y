@@ -102,7 +102,7 @@ footer {
   content: '〉';
 }
 .hover-bg-light:hover {
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !important;
 }
 .vertical-middle {
   position: relative;
