@@ -38,27 +38,24 @@
               <strong class="position-absolute bg-white p-1">
                 {{ rank }}위
               </strong>
-              <b-badge
-                v-if="randomList[rank - 1] % 3 === 0"
-                variant="success"
-                class="item-badge px-2 py-1"
-              >
-                {{ '무신사 단독' }}
-              </b-badge>
-              <b-badge
-                v-else-if="randomList[rank - 1] % 4 === 0"
-                variant="primary"
-                class="item-badge px-2 py-1"
-              >
-                {{ '부티크' }}
-              </b-badge>
-              <b-badge
-                v-else-if="randomList[rank - 1] % 5 === 0"
-                variant="danger"
-                class="item-badge px-2 py-1"
-              >
-                {{ '한정 판매' }}
-              </b-badge>
+              <ListTag
+                :tag="
+                  [
+                    'boutique',
+                    'exclusive',
+                    'income',
+                    'limited',
+                    'pre',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                    '',
+                  ][randomList[rank - 1] + 5]
+                "
+                pos="15"
+              />
               <b-link :to="`/goods/${'1111111'}`">
                 <figure class="px-4 pt-4">
                   <b-img
@@ -190,12 +187,14 @@
 
 <script>
 import MainSection from '~/components/MainSection.vue';
+import ListTag from '~/components/ListTag.vue';
 import RankIcon from '~/components/RankIcon.vue';
-import rankingList from '~/test/stub.rankinglist.js';
 import LayoutDefault from '~/mixins/LayoutDefault.js';
+import rankingList from '@/test/stub.rankinglist.js';
 export default {
   components: {
     MainSection,
+    ListTag,
     RankIcon,
   },
   mixins: [LayoutDefault],
