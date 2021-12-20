@@ -1,8 +1,7 @@
 <template>
   <span :class="color" :title="title">
-    <b-icon :icon="icon" :flip-v="flipV" :scale="scale" aria-hidden="true" />{{
-      text
-    }}
+    <b-icon :icon="icon" :flip-v="flipV" :scale="scale" aria-hidden="true" />
+    {{ text }}
   </span>
 </template>
 

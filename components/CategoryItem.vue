@@ -60,7 +60,7 @@
       >
         <span class="float-left">{{ level }}</span>
         <strong class="float-right">
-          {{ `${(price * percent).toLocaleString()}원` }}
+          {{ Math.round(price * percent).toLocaleString() }}원
         </strong>
       </b-dropdown-text>
     </b-dropdown>

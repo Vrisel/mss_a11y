@@ -43,11 +43,11 @@
                     </span>
                     <RankIcon :change="randomList[rank - 1]" without-number />
                   </p>
-                  <b-link class="stretched-link d-block text-truncate">{{
-                    '상품명상품명상품명상품명'
-                  }}</b-link>
+                  <b-link class="stretched-link d-block text-truncate">
+                    {{ '상품명상품명상품명상품명' }}
+                  </b-link>
                   <p>
-                    <strong> {{ `${(99000).toLocaleString()}원` }}</strong>
+                    <strong>{{ (99000).toLocaleString() }}원</strong>
                   </p>
                 </li>
               </ul>
