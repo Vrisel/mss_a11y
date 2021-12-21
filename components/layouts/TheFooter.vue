@@ -186,14 +186,6 @@ export default {};
 .bracket::after {
   content: ' ] ';
 }
-.divider > * {
-  display: inline-block;
-}
-.divider > :not(:last-child) {
-  border-right: 1px solid gray;
-  margin-right: 0.5em;
-  padding-right: 0.5em;
-}
 .word-keep {
   word-break: keep-all;
 }

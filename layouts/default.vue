@@ -123,4 +123,16 @@ footer {
 .font-12 {
   font-size: 12px;
 }
+.divider > * {
+  display: inline-block;
+}
+.divider > :not(:last-child) {
+  border-right: 1px solid gray;
+  margin-right: 0.5em;
+  padding-right: 0.5em;
+}
+.divider-horizontal > :not(:last-child) {
+  border-bottom: 1px solid gray;
+  margin-bottom: 1.5em;
+}
 </style>

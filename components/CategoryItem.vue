@@ -1,12 +1,12 @@
 <template>
   <div :aria-labelledby="id">
-    <p class="text-center">
+    <div class="text-center">
       <b-link :to="`/goods/${id}`" class="w-100 text-center">
         <figure class="d-inline-block mx-auto">
           <b-img-lazy src="https://via.placeholder.com/125x150" :alt="name" />
         </figure>
       </b-link>
-    </p>
+    </div>
     <header :id="id">
       <p class="mb-0">
         <b-link :to="`/brand/${brand.id}`" class="brand d-block">
@@ -92,7 +92,7 @@
       <template #button-content>
         <strong>OPTION</strong>
       </template>
-      <b-dropdown-text>
+      <b-dropdown-text tag="div">
         <ul class="d-flex flex-column" style="font-size: 11px">
           <li v-for="size of ['S', 'M', 'L', 'XL']" :key="size">
             <span class="float-left">{{ size }}</span>
