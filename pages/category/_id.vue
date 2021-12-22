@@ -92,7 +92,11 @@ export default {
     let randomCount = getRandom(15);
     for (let i = 0; i < randomCount; i++) {
       subCategoryFilter.push({
-        name_kor: '품목명',
+        name_kor:
+          '품목명' +
+          String.fromCharCode(65 + getRandom(25)) +
+          String.fromCharCode(65 + getRandom(25)) +
+          String.fromCharCode(65 + getRandom(25)),
         count: getRandom(1000),
       });
     }
@@ -100,7 +104,11 @@ export default {
     randomCount = getRandom(30);
     for (let i = 0; i < randomCount; i++) {
       brandFilter.push({
-        name_kor: '브랜드명',
+        name_kor:
+          '브랜드명' +
+          String.fromCharCode(65 + getRandom(25)) +
+          String.fromCharCode(65 + getRandom(25)) +
+          String.fromCharCode(65 + getRandom(25)),
         count: getRandom(1000),
         isExclusive: Math.random() < 0.2,
         isSale: Math.random() < 0.8,

@@ -15,7 +15,7 @@
           </li>
           <li
             v-for="item of [{ name_kor: '시즌오프', isNew: true }]"
-            :key="`campaign-${item}`"
+            :key="`campaign-${item.name_kor}`"
             class="float-left filter-item"
           >
             <b-link>
@@ -47,8 +47,8 @@
             <b-link>전체</b-link>
           </li>
           <li
-            v-for="item of subCategory"
-            :key="`subcategory-${item}`"
+            v-for="(item, index) of subCategory"
+            :key="`subcategory-${item.name_kor}-${index}`"
             class="float-left filter-item"
           >
             <b-link>
@@ -68,12 +68,17 @@
       >
         <h3>
           브랜드
-          <b-form-input size="sm" type="search" aria-label="브랜드" />
+          <b-form-input
+            v-model="brandSearch"
+            size="sm"
+            type="search"
+            aria-label="브랜드"
+          />
         </h3>
       </header>
       <div style="margin-left: 122px; padding-top: 19px">
         <div class="float-left w-100 divider-horizontal">
-          <div class="pb-3">
+          <div v-if="!brandSearch" class="pb-3">
             <header class="d-flex flex-wrap filter-sub-header">
               <h4>
                 <strong>인기</strong>
@@ -91,27 +96,39 @@
                   variant="outline-secondary"
                   squared
                   class="float-left p-0 btn-toggle-expansion"
-                  :title="brandExpanded !== 'exclusive' ? '펼치기' : '접기'"
+                  :title="!expanded.exclusive ? '펼치기' : '접기'"
                   @click="brandExpansionToggle('exclusive')"
                 >
                   <b-icon
-                    :icon="brandExpanded !== 'exclusive' ? 'plus' : 'dash'"
+                    :icon="!expanded.exclusive ? 'plus' : 'dash'"
                     aria-hidden="true"
                   />
                 </b-button>
               </div>
               <div class="mt-2 divider">
-                <b-link>상품순</b-link>
-                <b-link>이름순</b-link>
+                <b-link
+                  :class="{ active: sort.exclusive === 'count' }"
+                  :disabled="sort.exclusive === 'count'"
+                  @click="sort.exclusive = 'count'"
+                >
+                  상품순
+                </b-link>
+                <b-link
+                  :class="{ active: sort.exclusive === 'abc' }"
+                  :disabled="sort.exclusive === 'abc'"
+                  @click="sort.exclusive = 'abc'"
+                >
+                  이름순
+                </b-link>
               </div>
             </header>
             <ul
               class="d-flex flex-wrap"
-              :class="{ 'filter-collapsed': brandExpanded !== 'exclusive' }"
+              :class="{ 'filter-collapsed': !expanded.exclusive }"
             >
               <li
                 v-for="(item, index) of exclusiveBrand"
-                :key="'단독' + index"
+                :key="`exclusive-${item}-${index}`"
                 class="filter-item"
               >
                 <b-link>
@@ -140,27 +157,39 @@
                   variant="outline-secondary"
                   squared
                   class="float-left p-0 btn-toggle-expansion"
-                  :title="brandExpanded !== 'all' ? '펼치기' : '접기'"
-                  @click="brandExpansionToggle('all')"
+                  :title="!expanded.whole ? '펼치기' : '접기'"
+                  @click="brandExpansionToggle('whole')"
                 >
                   <b-icon
-                    :icon="brandExpanded !== 'all' ? 'plus' : 'dash'"
+                    :icon="!expanded.whole ? 'plus' : 'dash'"
                     aria-hidden="true"
                   />
                 </b-button>
               </div>
               <div class="mt-2 divider">
-                <b-link>상품순</b-link>
-                <b-link>이름순</b-link>
+                <b-link
+                  :class="{ active: sort.whole === 'count' }"
+                  :disabled="sort.whole === 'count'"
+                  @click="sort.whole = 'count'"
+                >
+                  상품순
+                </b-link>
+                <b-link
+                  :class="{ active: sort.whole === 'abc' }"
+                  :disabled="sort.whole === 'abc'"
+                  @click="sort.whole = 'abc'"
+                >
+                  이름순
+                </b-link>
               </div>
             </header>
             <ul
               class="d-flex flex-wrap"
-              :class="{ 'filter-collapsed': brandExpanded !== 'all' }"
+              :class="{ 'filter-collapsed': !expanded.whole }"
             >
               <li
-                v-for="(item, index) of brand"
-                :key="'전체' + index"
+                v-for="(item, index) of wholeBrand"
+                :key="`whole-${item}-${index}`"
                 class="filter-item"
               >
                 <b-link>
@@ -181,7 +210,6 @@
               </li>
             </ul>
           </div>
-          <!-- "전체"로 한 번 더 반복 -->
         </div>
       </div>
     </div>
@@ -197,6 +225,19 @@
 </template>
 
 <script>
+function brandSort(option, a, b) {
+  switch (option) {
+    case 'count':
+      return b.count - a.count || brandSort('abc', a.count, b.count);
+    case 'abc':
+      console.log('abc');
+      if (a.name_kor > b.name_kor) return 1;
+      else if (a.name_kor < b.name_kor) return -1;
+      else return b.count - a.count;
+    default:
+      return 0;
+  }
+}
 export default {
   props: {
     subCategory: {
@@ -214,21 +255,28 @@ export default {
   },
   data() {
     return {
-      brandExpanded: '',
+      sort: { exclusive: 'count', whole: 'count' },
+      expanded: { exclusive: false, whole: false },
+      brandSearch: '',
     };
   },
   computed: {
     exclusiveBrand() {
-      return this.brand.filter((e) => e.isExclusive);
+      const result = this.brand.filter((e) => e.isExclusive);
+      result.sort((a, b) => brandSort(this.sort.exclusive, a, b));
+      return result;
+    },
+    wholeBrand() {
+      const result = this.brand.filter((e) =>
+        e.name_kor.includes(this.brandSearch)
+      );
+      result.sort((a, b) => brandSort(this.sort.whole, a, b));
+      return result;
     },
   },
   methods: {
     brandExpansionToggle(target) {
-      if (this.brandExpanded === target) {
-        this.brandExpanded = '';
-      } else {
-        this.brandExpanded = target;
-      }
+      this.expanded[target] = !this.expanded[target];
     },
   },
 };
@@ -259,5 +307,8 @@ export default {
 .filter-collapsed {
   max-height: 132px;
   overflow: hidden;
+}
+.active {
+  font-weight: bold;
 }
 </style>
