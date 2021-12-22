@@ -14,6 +14,7 @@
           <li
             v-if="linkForAll"
             class="float-left"
+            :class="allClass"
             :style="{ height: 33 * Math.ceil(option.length / 5) + 'px' }"
             style="width: 116px; padding-right: 16px; padding-bottom: 15px"
           >
@@ -50,8 +51,12 @@ export default {
       // required: true,
     },
     linkForAll: {
-      type: [String, Boolean],
-      default: true,
+      type: [Boolean],
+      default: false,
+    },
+    allClass: {
+      type: [String, Array, Object],
+      default: '',
     },
     option: {
       type: Array,
