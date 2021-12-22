@@ -11,7 +11,12 @@
     />
 
     <b-button-group vertical class="utility mt-3 bg-white">
-      <b-button type="button" variant="outline-secondary" title="즐겨찾기">
+      <b-button
+        v-if="isBrand"
+        type="button"
+        variant="outline-secondary"
+        title="즐겨찾기"
+      >
         <b-iconstack aria-hidden="true">
           <b-icon stacked icon="circle-fill" variant="danger" />
           <b-icon stacked icon="heart-fill" scale="0.6" variant="white" />
@@ -84,6 +89,9 @@ export default {
     };
   },
   computed: {
+    isBrand() {
+      return this.$route.name === 'brand-id';
+    },
     isTop() {
       return this.scrollY === 0;
     },
