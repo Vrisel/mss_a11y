@@ -73,6 +73,13 @@
             size="sm"
             type="search"
             aria-label="브랜드"
+            style="
+              width: 82px;
+              height: 26px;
+              margin-top: 17px;
+              padding: 1px 5px;
+              font-size: 12px;
+            "
           />
         </h3>
       </header>
@@ -213,14 +220,174 @@
         </div>
       </div>
     </div>
-    <!-- <ListFilter title="색상"></ListFilter>
-    <ListFilter title="가격" :link-for-all="true">
-      <ul style="padding: 12px 15px 9px 12px">
-        <li style="padding-right: 24px; margin: 8px 0 10px"></li>
-      </ul>
-    </ListFilter>
-    <ListFilter title="실측"></ListFilter>
-    <ListFilter title="검색"></ListFilter> -->
+    <div class="border-bottom border-right clearfix">
+      <header
+        class="float-left"
+        style="width: 109px; padding-top: 20px; padding-left: 15px"
+      >
+        <h3>색상</h3>
+      </header>
+      <div style="margin-left: 122px; padding-top: 7px">
+        <ul style="padding-right: 15px; padding-bottom: 5px">
+          <li
+            v-for="item of [
+              { name_kor: '흰색', color: 'white' },
+              { name_kor: '검은색', color: 'black' },
+            ]"
+            :key="`color-${item.name_kor}`"
+            class="float-left"
+            style="padding: 8px 7px 10px 0"
+          >
+            <b-link
+              class="d-block border"
+              style="
+                width: 23px;
+                height: 23px;
+                text-indent: 100%;
+                overflow: hidden;
+                white-space: nowrap;
+              "
+              :style="{ 'background-color': item.color }"
+            >
+              {{ item.name_kor }}
+            </b-link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-bottom border-right clearfix">
+      <header
+        class="float-left"
+        style="width: 109px; padding-top: 20px; padding-left: 15px"
+      >
+        <h3>가격</h3>
+      </header>
+      <div style="margin-left: 122px; padding: 12px 15px 9px 0">
+        <ul class="d-flex">
+          <li class="filter-price">
+            <b-link>전체</b-link>
+          </li>
+          <li
+            v-for="(item, index) of [
+              '~ 30,000원',
+              '30,000원 ~ 70,000원',
+              '70,000원 ~ 110,000원',
+              '110,000원 ~ 140,000원',
+              '140,000원 ~',
+            ]"
+            :key="`price-${index}`"
+            class="filter-price"
+          >
+            <b-link>
+              <span>{{ item }}</span>
+            </b-link>
+          </li>
+          <li class="filter-price">
+            <b-form inline class="align-middle">
+              <input
+                v-model="priceFrom"
+                type="number"
+                step="1"
+                min="0"
+                class="border"
+                style="
+                  width: 70px;
+                  height: 29px;
+                  padding: 5px 7px 4px 4px;
+                  font-size: 12px;
+                "
+              />
+              <span>원 ~ </span>
+              <b-form-input
+                v-model="priceTo"
+                type="number"
+                step="1"
+                min="0"
+                class="border"
+                style="
+                  width: 70px;
+                  height: 29px;
+                  padding: 5px 7px 4px 4px;
+                  font-size: 12px;
+                "
+              />
+              <span>원</span>
+              <b-button
+                type="submit"
+                style="
+                  height: 25px;
+                  padding: 5px 5px 3px;
+                  margin-left: 4px;
+                  font-size: 12px;
+                "
+                >검색</b-button
+              >
+            </b-form>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- <div class="border-bottom border-right clearfix">
+      <header
+        class="float-left"
+        style="width: 109px; padding-top: 20px; padding-left: 15px"
+      >
+        <h3>실측</h3>
+      </header>
+      <div style="margin-left: 122px; padding: 12px 15px 9px 0">
+        <ul class="d-flex">
+          <li class="filter-price">
+            <b-button type="button">최근 구매내역</b-button>
+          </li>
+          <li
+            v-for="(item, index) of sizeFilter"
+            :key="`size-${index}`"
+            style="padding-right:10px;padding-left:25px"
+          >
+            <b-link>
+              <span>{{ item }}</span>
+            </b-link>
+          </li>
+        </ul>
+      </div>
+    </div> -->
+    <div class="border-bottom border-right clearfix">
+      <header
+        class="float-left"
+        style="width: 109px; padding-top: 20px; padding-left: 15px"
+      >
+        <h3>검색</h3>
+      </header>
+      <div style="margin-left: 122px; padding: 12px 15px 9px 0">
+        <b-form inline>
+          <b-form-input
+            v-model="keyword"
+            name="keyword"
+            type="text"
+            class="mr-1 rounded-0"
+            style="
+              width: 142px;
+              height: 25px;
+              padding: 2px 5px;
+              font-size: 12px;
+            "
+          />
+          <b-button
+            type="submit"
+            variant="outline-secondary"
+            class="m-0 rounded-0"
+            style="
+              width: 52px;
+              height: 25px;
+              padding: 5px 5px 6px;
+              font-size: 12px;
+            "
+          >
+            검색
+          </b-button>
+        </b-form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -255,9 +422,13 @@ export default {
   },
   data() {
     return {
+      selected: { campaign: [], subCategory: [], brand: [] },
       sort: { exclusive: 'count', whole: 'count' },
       expanded: { exclusive: false, whole: false },
       brandSearch: '',
+      priceFrom: 0,
+      priceTo: 0,
+      keyword: '',
     };
   },
   computed: {
@@ -273,6 +444,14 @@ export default {
       result.sort((a, b) => brandSort(this.sort.whole, a, b));
       return result;
     },
+    /* sizeFilter() {
+      const filter = [];
+      switch(this.$route.params.id) {
+        default:
+          filter.push('총장');
+      }
+      return filter;
+    }, */
   },
   methods: {
     brandExpansionToggle(target) {
@@ -303,6 +482,15 @@ export default {
 .filter-item {
   width: 195px;
   padding-bottom: 15px;
+}
+.filter-price {
+  margin-top: 8px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 14px;
+}
+.filter-price:first-child {
+  padding-left: 0;
 }
 .filter-collapsed {
   max-height: 132px;
