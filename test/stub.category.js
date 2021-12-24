@@ -9,19 +9,19 @@ export default {
     id: '001001',
     name_kor: '반팔 티셔츠',
     count: 39377,
-    upper: '001',
+    upper_category: '001',
   },
   '001004': {
     id: '001004',
     name_kor: '후드 티셔츠',
     count: 14889,
-    upper: '001',
+    upper_category: '001',
   },
   '001010': {
     id: '001010',
     name_kor: '긴팔 티셔츠',
     count: 9246,
-    upper: '001',
+    upper_category: '001',
   },
   '002': {
     id: '002',
@@ -33,13 +33,13 @@ export default {
     id: '002001',
     name_kor: '블루종/MA-1',
     count: 1785,
-    upper: '002',
+    upper_category: '002',
   },
   '002022': {
     id: '002022',
     name_kor: '후드 집업',
     count: 2604,
-    upper: '002',
+    upper_category: '002',
   },
   '003': {
     id: '003',
@@ -51,7 +51,7 @@ export default {
     id: '003002',
     name_kor: '데님 팬츠',
     count: 9696,
-    upper: '003',
+    upper_category: '003',
   },
   '018': {
     id: '018',
@@ -63,6 +63,6 @@ export default {
     id: '018002',
     name_kor: '캔버스/단화',
     count: 6124,
-    upper: '018',
+    upper_category: '018',
   },
 };
