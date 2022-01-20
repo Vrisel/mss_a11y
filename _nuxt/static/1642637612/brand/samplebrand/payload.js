@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/samplebrand", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"samplebrand",name_eng:"SAMPLEBRAND",name_kor:"샘플 브랜드",logo:"",count:2468,isFav:false}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

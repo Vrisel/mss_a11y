@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand", {data:[{}],fetch:{},mutations:[["mutateBrand",{}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

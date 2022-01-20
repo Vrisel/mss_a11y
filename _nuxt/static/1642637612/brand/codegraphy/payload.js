@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/codegraphy", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"codegraphy",name_eng:"CODEGRAPHY",name_kor:"코드그라피",logo:"",count:341,isFav:true}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

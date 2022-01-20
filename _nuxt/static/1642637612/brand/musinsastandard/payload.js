@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/musinsastandard", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"musinsastandard",name_eng:"MUSINSA STANDARD",name_kor:"무신사 스탠다드",logo:"",count:4721,isFav:true}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

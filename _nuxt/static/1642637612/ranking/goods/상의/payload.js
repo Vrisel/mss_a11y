@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/ranking/goods/%EC%83%81%EC%9D%98", {data:[{}],fetch:{},mutations:[["mutateBrand",{}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

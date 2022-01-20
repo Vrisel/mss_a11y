@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/lee", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"lee",name_eng:"LEE",name_kor:"리",logo:"",count:677,isFav:false}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

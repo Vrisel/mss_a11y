@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/lmood", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"lmood",name_eng:"LMOOD",name_kor:"엘무드",logo:"",count:412,isFav:false}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

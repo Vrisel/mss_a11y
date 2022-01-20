@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/k2", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"k2",name_eng:"K2",name_kor:"케이투",logo:"",count:122,isFav:false}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});

@@ -1,0 +1,1 @@
+__NUXT_JSONP__("/brand/thisisneverthat", {data:[{}],fetch:{},mutations:[["mutateBrand",{id:"thisisneverthat",name_eng:"THISISNEVERTHAT",name_kor:"디스이즈네버댓",logo:"",count:2685,isFav:false}],["mutateCategories",{upperCategory:{},category:{}}],["mutateGoods",{}]]});
