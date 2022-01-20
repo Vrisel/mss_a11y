@@ -99,7 +99,8 @@ export default {
       return this.scrollY + window.innerHeight >= document.body.offsetHeight;
     },
     shareUrl() {
-      return process.env.baseUrl + this.$route.fullPath;
+      return `https://github.vrisel.io/mss_a11y${this.$route.fullPath}`;
+      // return window.location.href;
     },
     shareFacebook() {
       return `https://www.facebook.com/sharer/sharer.php?u=${this.shareUrl}`;
