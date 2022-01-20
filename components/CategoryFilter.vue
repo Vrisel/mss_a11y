@@ -397,7 +397,6 @@ function brandSort(option, a, b) {
     case 'count':
       return b.count - a.count || brandSort('abc', a.count, b.count);
     case 'abc':
-      console.log('abc');
       if (a.name_kor > b.name_kor) return 1;
       else if (a.name_kor < b.name_kor) return -1;
       else return b.count - a.count;
