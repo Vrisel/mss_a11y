@@ -1,6 +1,7 @@
 # 접근성 향상에 초점을 맞춘 **[무신사 스토어](https://store.musinsa.com) 클론**
 
 > 해당 사이트를 이용하며 경험한 [불편함을 해소](#해소한-불편함)해보고자 시작한 프로젝트
+>
 > 페이지 보기: <https://vrisel.github.io/mss_a11y>
 
 ## 개요
@@ -18,7 +19,7 @@
 
 - 각 랜드마크에 `role` 속성 및 레이블 적용
 - 레이블이 필요한 요소에 레이블 적용
-  - 품목 리스트의 숫자가 항목 개수임을 ARIA로 명시
+  - 품목 리스트에 적힌 숫자가 각 항목의 개수임을 ARIA로 명시
   - 표시된 할인 전후 가격 ARIA로 명시 (스크린리더가 취소선을 명시하지 못할 경우 대비)
 - 헤더 navbar의 확장메뉴가 마우스오버가 아니라 클릭 시에 열리도록 변경
   - 확장 가능한 메뉴라는 가이드 필요
@@ -46,23 +47,5 @@
 - State 관리: [Vuex](https://vuex.vuejs.org/kr/)
 - CSS Library: [Bootstrap-Vue](https://bootstrap-vue.org/)
 - Linter: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
-- 단위테스트: [Jest](https://jestjs.io/)
-
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+- <s>단위테스트: [Jest](https://jestjs.io/)</s>
+  - 한 번 사용해본 정도...
